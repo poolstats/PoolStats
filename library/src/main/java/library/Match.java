@@ -1,5 +1,8 @@
 package library;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Jandie on 2017-05-03.
  */
@@ -8,11 +11,14 @@ public class Match {
     private String name;
     private Table table;
     private Team[] teams;
+    private List<Turn> turns;
 
     public Match(int id, String name, Table table, Team team1, Team team2) {
         Id = id;
         this.name = name;
         this.table = table;
+
+        turns = new ArrayList<>();
 
         teams = new Team[2];
         teams[0] = team1;
@@ -49,6 +55,14 @@ public class Match {
 
     public void setTeams(Team[] teams) {
         this.teams = teams;
+    }
+
+    public void addTurn(Turn turn) {
+        turns.add(turn);
+    }
+
+    public void removeTurn(Turn turn) {
+        turns.remove(turn);
     }
 
     public enum MatchType {
