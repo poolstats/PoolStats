@@ -1,26 +1,38 @@
 package library;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 
 /**
  * Created by Jandie on 2017-05-03.
  */
+@Entity
+@javax.persistence.Table
 public class Table {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private List<Pocket> pockets;
     private List<Ball> balls;
 
-    public Table(int id, List<Pocket> pockets, List<Ball> balls) {
+    public Table() {
+        super();
+    }
+
+    public Table(long id, List<Pocket> pockets, List<Ball> balls) {
         this.id = id;
         this.pockets = pockets;
         this.balls = balls;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -1,28 +1,41 @@
 package library;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Jandie on 2017-05-03.
  */
+@Entity
+@javax.persistence.Table
 public class Pocket {
-    private int Id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long Id;
     private PocketLocation pocketLocation;
     private List<Ball> pottedBalls;
 
-    public Pocket(int id, PocketLocation pocketLocation) {
+    public Pocket() {
+        super();
+    }
+
+    public Pocket(long id, PocketLocation pocketLocation) {
         Id = id;
         this.pocketLocation = pocketLocation;
 
         pottedBalls = new ArrayList<>();
     }
 
-    public int getId() {
+    public long getId() {
         return Id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         Id = id;
     }
 
