@@ -1,8 +1,6 @@
 package library;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +15,14 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
     private String name;
+
+    @OneToOne
     private Table table;
-    private Team[] teams;
+
+    @OneToMany(mappedBy = "teams")
+    private List<Team> teams;
+
+    @OneToMany(mappedBy = "turns")
     private List<Turn> turns;
 
     public Match() {
@@ -32,9 +36,9 @@ public class Match {
 
         turns = new ArrayList<>();
 
-        teams = new Team[2];
-        teams[0] = team1;
-        teams[1] = team2;
+        teams = new ArrayList<>();
+        teams.add(team1);
+        teams.add(team2);
     }
 
     public long getId() {
@@ -61,12 +65,12 @@ public class Match {
         this.table = table;
     }
 
-    public Team[] getTeams() {
+    public List<Team> getTeams() {
         return teams;
     }
 
-    public void setTeams(Team[] teams) {
-        this.teams = teams;
+    public List<Turn> getTurns() {
+        return turns;
     }
 
     public void addTurn(Turn turn) {

@@ -1,9 +1,6 @@
 package library;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -15,7 +12,11 @@ public class Table {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @OneToMany(mappedBy = "pockets")
     private List<Pocket> pockets;
+
+    @OneToMany(mappedBy = "balls")
     private List<Ball> balls;
 
     public Table() {
