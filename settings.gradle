@@ -1,0 +1,4 @@
+rootProject.name = 'PoolStats'
+
+include ':library'
+include ':logic'
