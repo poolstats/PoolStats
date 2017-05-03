@@ -24,8 +24,7 @@ public class Ball {
         super();
     }
 
-    public Ball(long id, int number, BallType ballType, BallColor ballColor, Pocket.PocketLocation pocket) {
-        Id = id;
+    public Ball(int number, BallType ballType, BallColor ballColor, Pocket.PocketLocation pocket) {
         this.number = number;
         this.ballType = ballType;
         this.ballColor = ballColor;
