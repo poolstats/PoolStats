@@ -26,6 +26,15 @@ public class UserRepo {
 
     public void addUser(String username) {
         entityManager.getTransaction().begin();
+
+        // Save userStats
+        UserStats userStats = new UserStats(0, 0, 0, 0, 0, 0, 0, 0);
+        entityManager.persist(userStats);
+
+        // Save user
+        User user = new User(username, userStats);
+        entityManager.persist(user);
+
         entityManager.getTransaction().commit();
     }
 }

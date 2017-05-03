@@ -1,3 +1,4 @@
 dependencies {
     compile project (':repo')
+    compile 'com.jfoenix:jfoenix:1.2.0'
 }
