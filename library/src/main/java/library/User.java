@@ -1,9 +1,6 @@
 package library;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Jandie on 2017-05-03.
@@ -15,6 +12,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String username;
+
+    @OneToOne
     private UserStats userStats;
 
     public User() {

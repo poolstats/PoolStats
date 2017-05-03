@@ -18,19 +18,17 @@ public class Ball {
     private int number;
     private BallType ballType;
     private BallColor ballColor;
-    private User potter;
     private Pocket.PocketLocation pocket;
 
     public Ball() {
         super();
     }
 
-    public Ball(long id, int number, BallType ballType, BallColor ballColor, User potter, Pocket.PocketLocation pocket) {
+    public Ball(long id, int number, BallType ballType, BallColor ballColor, Pocket.PocketLocation pocket) {
         Id = id;
         this.number = number;
         this.ballType = ballType;
         this.ballColor = ballColor;
-        this.potter = potter;
         this.pocket = pocket;
     }
 
@@ -64,14 +62,6 @@ public class Ball {
 
     public void setBallColor(BallColor ballColor) {
         this.ballColor = ballColor;
-    }
-
-    public User getPotter() {
-        return potter;
-    }
-
-    public void setPotter(User potter) {
-        this.potter = potter;
     }
 
     public Pocket.PocketLocation getPocket() {

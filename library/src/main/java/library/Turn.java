@@ -1,9 +1,6 @@
 package library;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -15,17 +12,15 @@ public class Turn {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private Team team;
+
+    @OneToOne
+    private User player;
+
+    @OneToMany(mappedBy = "pottedBalls")
     private List<Ball> pottedBalls;
 
     public Turn() {
         super();
-    }
-
-    public Turn(long id, Team team, List<Ball> pottedBalls) {
-        this.id = id;
-        this.team = team;
-        this.pottedBalls = pottedBalls;
     }
 
     public long getId() {
@@ -36,12 +31,12 @@ public class Turn {
         this.id = id;
     }
 
-    public Team getTeam() {
-        return team;
+    public User getPlayer() {
+        return player;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setPlayer(User player) {
+        this.player = player;
     }
 
     public List<Ball> getPottedBalls() {

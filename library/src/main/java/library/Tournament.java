@@ -1,9 +1,6 @@
 package library;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -16,7 +13,11 @@ public class Tournament {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
+
+    @OneToMany(mappedBy = "matches")
     private List<Match> matches;
+
+    @OneToMany(mappedBy = "teams")
     private List<Team> teams;
 
     public Tournament() {
@@ -50,6 +51,7 @@ public class Tournament {
         return matches;
     }
 
+    @OneToMany
     public List<Team> getTeams() {
         return teams;
     }
