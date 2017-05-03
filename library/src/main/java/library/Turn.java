@@ -16,11 +16,16 @@ public class Turn {
     @OneToOne
     private User player;
 
-    @OneToMany(mappedBy = "pottedBalls")
+    @OneToMany(targetEntity = Ball.class)
     private List<Ball> pottedBalls;
 
     public Turn() {
         super();
+    }
+
+    public Turn(User player, List<Ball> pottedBalls) {
+        this.player = player;
+        this.pottedBalls = pottedBalls;
     }
 
     public long getId() {

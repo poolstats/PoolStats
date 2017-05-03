@@ -19,18 +19,17 @@ public class Match {
     @OneToOne
     private Table table;
 
-    @OneToMany(mappedBy = "teams")
+    @OneToMany(targetEntity = Team.class)
     private List<Team> teams;
 
-    @OneToMany(mappedBy = "turns")
+    @OneToMany(targetEntity = Turn.class)
     private List<Turn> turns;
 
     public Match() {
         super();
     }
 
-    public Match(long id, String name, Table table, Team team1, Team team2) {
-        Id = id;
+    public Match(String name, Table table, Team team1, Team team2) {
         this.name = name;
         this.table = table;
 

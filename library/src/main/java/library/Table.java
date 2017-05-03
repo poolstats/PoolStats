@@ -13,18 +13,17 @@ public class Table {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToMany(mappedBy = "pockets")
+    @OneToMany(targetEntity = Pocket.class)
     private List<Pocket> pockets;
 
-    @OneToMany(mappedBy = "balls")
+    @OneToMany(targetEntity = Ball.class)
     private List<Ball> balls;
 
     public Table() {
         super();
     }
 
-    public Table(long id, List<Pocket> pockets, List<Ball> balls) {
-        this.id = id;
+    public Table(List<Pocket> pockets, List<Ball> balls) {
         this.pockets = pockets;
         this.balls = balls;
     }
