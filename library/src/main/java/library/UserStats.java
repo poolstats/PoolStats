@@ -27,9 +27,8 @@ public class UserStats {
         super();
     }
 
-    public UserStats(long id, int matchesPlayed, int matchesWon, int matchesLost, int tournamentsPlayed,
+    public UserStats(int matchesPlayed, int matchesWon, int matchesLost, int tournamentsPlayed,
                      int tournamentsWon, int tournamentsLost, int ballsPotted, int shots) {
-        this.id = id;
         this.matchesPlayed = matchesPlayed;
         this.matchesWon = matchesWon;
         this.matchesLost = matchesLost;
