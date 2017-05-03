@@ -1,19 +1,31 @@
 package library;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Jandie on 2017-05-03.
  */
+@Entity
+@javax.persistence.Table
 public class Match {
-    private int Id;
+
+    @javax.persistence.Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long Id;
     private String name;
     private Table table;
     private Team[] teams;
     private List<Turn> turns;
 
-    public Match(int id, String name, Table table, Team team1, Team team2) {
+    public Match() {
+        super();
+    }
+
+    public Match(long id, String name, Table table, Team team1, Team team2) {
         Id = id;
         this.name = name;
         this.table = table;
@@ -25,11 +37,11 @@ public class Match {
         teams[1] = team2;
     }
 
-    public int getId() {
+    public long getId() {
         return Id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         Id = id;
     }
 

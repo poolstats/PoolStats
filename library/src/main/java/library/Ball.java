@@ -1,17 +1,31 @@
 package library;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * Created by Jandie on 2017-05-03.
  */
+@Entity
+@javax.persistence.Table
 public class Ball {
-    private int Id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long Id;
     private int number;
     private BallType ballType;
     private BallColor ballColor;
     private User potter;
     private Pocket.PocketLocation pocket;
 
-    public Ball(int id, int number, BallType ballType, BallColor ballColor, User potter, Pocket.PocketLocation pocket) {
+    public Ball() {
+        super();
+    }
+
+    public Ball(long id, int number, BallType ballType, BallColor ballColor, User potter, Pocket.PocketLocation pocket) {
         Id = id;
         this.number = number;
         this.ballType = ballType;
@@ -20,11 +34,11 @@ public class Ball {
         this.pocket = pocket;
     }
 
-    public int getId() {
+    public long getId() {
         return Id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         Id = id;
     }
 

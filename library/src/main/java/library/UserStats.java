@@ -1,10 +1,19 @@
 package library;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * Created by Jandie on 2017-05-03.
  */
+@Entity
+@javax.persistence.Table
 public class UserStats {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private int matchesPlayed;
     private int matchesWon;
     private int matchesLost;
@@ -14,7 +23,11 @@ public class UserStats {
     private int ballsPotted;
     private int shots;
 
-    public UserStats(int id, int matchesPlayed, int matchesWon, int matchesLost, int tournamentsPlayed,
+    public UserStats() {
+        super();
+    }
+
+    public UserStats(long id, int matchesPlayed, int matchesWon, int matchesLost, int tournamentsPlayed,
                      int tournamentsWon, int tournamentsLost, int ballsPotted, int shots) {
         this.id = id;
         this.matchesPlayed = matchesPlayed;
@@ -27,11 +40,11 @@ public class UserStats {
         this.shots = shots;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

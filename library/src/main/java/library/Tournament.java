@@ -1,28 +1,40 @@
 package library;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 
 /**
  * Created by Jandie on 2017-05-03.
  */
+@Entity
+@javax.persistence.Table
 public class Tournament {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String name;
     private List<Match> matches;
     private List<Team> teams;
 
-    public Tournament(int id, String name, List<Match> matches, List<Team> teams) {
+    public Tournament() {
+        super();
+    }
+
+    public Tournament(long id, String name, List<Match> matches, List<Team> teams) {
         this.id = id;
         this.name = name;
         this.matches = matches;
         this.teams = teams;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
