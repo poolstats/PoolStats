@@ -29,6 +29,7 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
+        this.sessionData = new SessionData();
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/StartScreen.fxml"));
         StartScreenController controller = new StartScreenController(this);
