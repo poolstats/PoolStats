@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,19 +16,9 @@
                   <Image url="@../images/pool_table.png" />
                </image>
             </ImageView>
-            <JFXTextField fx:id="usernameField" alignment="CENTER" focusColor="BLACK" layoutX="230.0" layoutY="185.0" promptText="Username" style="-fx-text-fill: #FFFFFF;" unFocusColor="BLACK">
+            <JFXButton fx:id="logoutButton" layoutX="519.0" layoutY="301.0" text="Logout">
                <font>
-                  <Font size="18.0" />
-               </font>
-            </JFXTextField>
-            <Label layoutX="172.0" layoutY="58.0" text="Pool Stats">
-               <font>
-                  <Font name="American Typewriter Bold" size="65.0" />
-               </font>
-            </Label>
-            <JFXButton fx:id="startButton" layoutX="230.0" layoutY="289.0" prefHeight="35.0" prefWidth="209.0" ripplerFill="BLACK" style="-fx-background-color: #009245;" text="Start">
-               <font>
-                  <Font size="18.0" />
+                  <Font name="American Typewriter" size="25.0" />
                </font>
             </JFXButton>
          </children>

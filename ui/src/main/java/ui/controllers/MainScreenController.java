@@ -1,7 +1,11 @@
 package ui.controllers;
 
+import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import ui.Application;
+import ui.SessionData;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,12 +17,26 @@ public class MainScreenController implements Initializable {
 
     private Application application;
 
+    @FXML
+    private JFXButton logoutButton;
+
     public MainScreenController(Application application) {
         this.application = application;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        logoutButton.setOnAction(this::handleLogoutAction);
 
     }
+
+    private void handleLogoutAction(ActionEvent actionEvent) {
+        try {
+            application.clearSessionData();
+            application.loadStartScreen();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
+

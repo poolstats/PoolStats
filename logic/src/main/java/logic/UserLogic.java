@@ -20,7 +20,6 @@ public class UserLogic {
             return userRepo.getUser(username);
         } catch (NoResultException e) {
             userRepo.addUser(username);
-
             return userRepo.getUser(username);
         }
     }
