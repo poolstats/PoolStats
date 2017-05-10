@@ -2,7 +2,6 @@ package repo;
 
 import library.User;
 import library.UserStats;
-import logic.interfaces.IUser;
 import repo.connector.JPAConnector;
 
 import javax.persistence.NoResultException;
@@ -12,7 +11,7 @@ import javax.persistence.Query;
 /**
  * Created by Jandie on 2017-05-03.
  */
-public class UserRepo implements IUser {
+public class UserRepo {
 
     private JPAConnector connector;
 
@@ -20,7 +19,6 @@ public class UserRepo implements IUser {
         this.connector = new JPAConnector();
     }
 
-    @Override
     public User getUser(String username) throws NoResultException {
         Query query = connector.getEntityManager()
                 .createQuery("SELECT u FROM User u WHERE u.username = :username");
@@ -32,7 +30,12 @@ public class UserRepo implements IUser {
         return returnValue;
     }
 
-    @Override
+    public void updateUser(User user) {
+        connector.getEntityManager().persist(user);
+
+        connector.commitTransaction();
+    }
+
     public void addUser(String username) {
         UserStats userStats = new UserStats(0, 0, 0, 0, 0, 0, 0, 0);
         User user = new User(username, userStats);
@@ -43,7 +46,6 @@ public class UserRepo implements IUser {
         connector.commitTransaction();
     }
 
-    @Override
     public void deleteUser(String username) {
         Query query = connector.getEntityManager()
                 .createQuery("SELECT u FROM User u WHERE u.username = :username");

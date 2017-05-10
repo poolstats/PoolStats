@@ -1,7 +1,6 @@
 package logic;
 
 import library.User;
-import logic.interfaces.IUser;
 import repo.UserRepo;
 
 import javax.persistence.NoResultException;
@@ -9,25 +8,20 @@ import javax.persistence.NoResultException;
 /**
  * Created by Jandie on 2017-05-10.
  */
-public class UserLogic implements IUser {
+public class UserLogic {
     private UserRepo userRepo;
 
     public UserLogic() {
         userRepo = new UserRepo();
     }
 
-    @Override
-    public User getUser(String username) throws NoResultException {
-        return userRepo.getUser(username);
-    }
+    public User loginUser(String username) {
+        try {
+            return userRepo.getUser(username);
+        } catch (NoResultException e) {
+            userRepo.addUser(username);
 
-    @Override
-    public void addUser(String username) {
-        userRepo.addUser(username);
-    }
-
-    @Override
-    public void deleteUser(String username) {
-        userRepo.deleteUser(username);
+            return userRepo.getUser(username);
+        }
     }
 }

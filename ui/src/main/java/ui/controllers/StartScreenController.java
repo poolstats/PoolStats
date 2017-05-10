@@ -7,11 +7,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import library.User;
-import repo.UserRepo;
+import logic.UserLogic;
 import ui.Application;
 
-import javax.persistence.NoResultException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -52,18 +50,12 @@ public class StartScreenController implements Initializable {
                     a.showAndWait();
 
                 } else {
-
-                    UserRepo userRepo = new UserRepo();
                     try {
-                      application.getSessionData().currentUser = userRepo.getUser(usernameField.getText());
-                      try {
-                          application.loadMainScreen();
-                      } catch (Exception e) {
-                          e.printStackTrace();
-                      }
+                        application.getSessionData().currentUser = new UserLogic().loginUser(usernameField.getText());
 
-                    } catch (NoResultException ex) {
-                        userRepo.addUser(usernameField.getText());
+                        application.loadMainScreen();
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
             }
