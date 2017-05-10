@@ -1,48 +1,52 @@
 package repo;
 
-import library.Team;
 import library.User;
 import library.UserStats;
+import logic.interfaces.IUser;
+import repo.connector.JPAConnector;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
+
 
 /**
  * Created by Jandie on 2017-05-03.
  */
-public class UserRepo {
-    public static void main(String[] args) {
-        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("PoolStatsDB");
-        EntityManager entitymanager = emfactory.createEntityManager();
-        entitymanager.getTransaction().begin();
+public class UserRepo implements IUser {
 
-        UserStats userStats1 = new UserStats(2, 3, 4, 5, 6, 7, 8, 9);
+    private JPAConnector connector;
 
-        entitymanager.persist(userStats1);
+    public UserRepo() {
+        this.connector = new JPAConnector();
+    }
 
-        User user1 = new User("guillaime", userStats1);
-        User user2 = new User("michel", userStats1);
+    @Override
+    public User getUser(String username) throws NoResultException {
+        Query query = connector.getEntityManager()
+                .createQuery("SELECT u FROM User u WHERE u.username = :username");
+        query.setParameter("username", username);
+        User returnValue = (User) query.getSingleResult();
+        return returnValue;
+    }
 
-        entitymanager.persist(user1);
-        entitymanager.persist(user2);
+    @Override
+    public void addUser(String username) {
+        UserStats userStats = new UserStats(0, 0, 0, 0, 0, 0, 0, 0);
+        connector.getEntityManager().persist(userStats);
+        User user = new User(username, userStats);
+        connector.getEntityManager().persist(user);
+        connector.commitTransaction();
+    }
 
-        List<User> players = new ArrayList<>();
-        players.add(user1);
-        players.add(user2);
+    @Override
+    public void deleteUser(String username) {
+        Query query = connector.getEntityManager()
+                .createQuery("SELECT u FROM User u WHERE u.username = :username");
+        query.setParameter("username", username);
+        User users = (User) query.getSingleResult();
 
-        Team team = new Team("securoserve", players);
-
-        entitymanager.persist(team);
-
-        entitymanager.remove(entitymanager.find(Team.class, 304L));
-
-        System.out.println(entitymanager.find(UserStats.class, 1L).getBallsPotted());
-
-        entitymanager.getTransaction().commit();
-        entitymanager.close();
-        emfactory.close();
+        connector.getEntityManager().remove(users);
+        connector.getEntityManager().remove(users.getUserStats());
+        connector.commitTransaction();
     }
 }
