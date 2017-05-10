@@ -1,15 +1,15 @@
 package repo.connector;
 
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
-
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  * Created by guillaimejanssen on 04/05/2017.
  *
  * @author guillaimejanssen
  */
-public class JPAConnector {
+public class JPAConnector implements AutoCloseable {
 
     private static final String PERSISTENCE_UNIT_NAME = "PoolStatsDB";
     private EntityManagerFactory entityManagerFactory;
@@ -18,6 +18,7 @@ public class JPAConnector {
     public JPAConnector() {
         entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
     }
 
     /**
@@ -25,22 +26,6 @@ public class JPAConnector {
      */
     public EntityManager getEntityManager() {
         return this.entityManager;
-    }
-
-    /**
-     * Start a transaction with the entityManager
-     */
-    public void beginTransaction() {
-        this.entityManager.getTransaction().begin();
-    }
-
-    /**
-     * Persist a object with thi method
-     *
-     * @param object to persist
-     */
-    public void persist(Object object) {
-        this.entityManager.persist(object);
     }
 
     /**
@@ -53,7 +38,8 @@ public class JPAConnector {
     /**
      * When done with the application, close the entityManager + Factory
      */
-    public void closeEntityManager() {
+    @Override
+    public void close() throws Exception {
         entityManager.close();
         entityManagerFactory.close();
     }
