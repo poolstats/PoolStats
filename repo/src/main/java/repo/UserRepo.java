@@ -3,38 +3,52 @@ package repo;
 import library.Team;
 import library.User;
 import library.UserStats;
+import logic.interfaces.IUser;
+import repo.connector.JPAConnector;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Created by Jandie on 2017-05-03.
  */
-public class UserRepo {
+public class UserRepo implements IUser {
 
-    private EntityManagerFactory entityManagerFactory;
-    private EntityManager entityManager;
+    private JPAConnector connector;
 
     public UserRepo() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("PoolStatsDB");
-        entityManager = entityManagerFactory.createEntityManager();
+        this.connector = new JPAConnector();
     }
 
+    @Override
+    public User getUser(String username) throws NoResultException {
+        Query query = connector.getEntityManager().createQuery("SELECT u FROM User u WHERE u.username = :username");
+        query.setParameter("username", username);
+        User returnValue = (User) query.getSingleResult();
+        return returnValue;
+    }
+
+    @Override
     public void addUser(String username) {
-        entityManager.getTransaction().begin();
-
-        // Save userStats
+        connector.beginTransaction();
         UserStats userStats = new UserStats(0, 0, 0, 0, 0, 0, 0, 0);
-        entityManager.persist(userStats);
-
-        // Save user
+        connector.persist(userStats);
         User user = new User(username, userStats);
-        entityManager.persist(user);
+        connector.persist(user);
+        connector.commitTransaction();
+    }
 
-        entityManager.getTransaction().commit();
+    @Override
+    public void deleteUser(String username) {
+        Query query = connector.getEntityManager().createQuery("SELECT u FROM User u WHERE u.username = :username");
+        query.setParameter("username", username);
+        User users = (User) query.getSingleResult();
+
+        connector.beginTransaction();
+        connector.getEntityManager().remove(users);
+        connector.getEntityManager().remove(users.getUserStats());
+        connector.commitTransaction();
     }
 }

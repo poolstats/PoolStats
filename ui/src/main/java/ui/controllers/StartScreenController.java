@@ -7,8 +7,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import library.User;
 import repo.UserRepo;
+import ui.Application;
 
+import javax.persistence.NoResultException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -25,9 +28,15 @@ public class StartScreenController implements Initializable {
     @FXML
     public JFXButton startButton;
 
+    private Application application;
+
+    public StartScreenController(Application application) {
+        this.application = application;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        usernameField.setStyle("-fx-text-fill: white; -fx-font-size: 18;");
+        usernameField.setStyle("-fx-text-fill: black; -fx-font-size: 18;");
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -41,9 +50,21 @@ public class StartScreenController implements Initializable {
                     String content = "Please fill in a valid username";
                     a.setContentText(content);
                     a.showAndWait();
+
                 } else {
+
                     UserRepo userRepo = new UserRepo();
-                    userRepo.addUser(usernameField.getText());
+                    try {
+                      application.getSessionData().currentUser = userRepo.getUser(usernameField.getText());
+                      try {
+                          application.loadMainScreen();
+                      } catch (Exception e) {
+                          e.printStackTrace();
+                      }
+
+                    } catch (NoResultException ex) {
+                        userRepo.addUser(usernameField.getText());
+                    }
                 }
             }
         });
