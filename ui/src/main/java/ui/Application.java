@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import ui.controllers.MainScreenController;
 import ui.controllers.StartScreenController;
 
 import java.io.File;
@@ -23,15 +24,27 @@ public class Application extends javafx.application.Application {
     }
 
     private Stage primaryStage;
+    private SessionData sessionData;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/StartScreen.fxml"));
-        StartScreenController controller = new StartScreenController();
+        StartScreenController controller = new StartScreenController(this);
         fxmlLoader.setController(controller);
         setStage(fxmlLoader.load());
+    }
+
+    public void loadMainScreen() throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/MainScreen.fxml"));
+        MainScreenController controller = new MainScreenController(this);
+        fxmlLoader.setController(controller);
+        setStage(fxmlLoader.load());
+    }
+
+    public SessionData getSessionData() {
+        return this.sessionData;
     }
 
     private void setStage(Parent root) {

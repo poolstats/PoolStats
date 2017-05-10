@@ -1,4 +1,5 @@
 dependencies {
     compile project (':repo')
+    compile project (':logic')
     compile 'com.jfoenix:jfoenix:1.2.0'
 }
