@@ -1,0 +1,5 @@
+dependencies {
+    compile project (':library')
+    compile project (':logic')
+    compile group: 'org.eclipse.persistence', name: 'eclipselink', version: '2.5.0'
+}

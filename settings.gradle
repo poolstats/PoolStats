@@ -2,3 +2,5 @@ rootProject.name = 'PoolStats'
 
 include ':library'
 include ':logic'
+include ':repo'
+include ':ui'

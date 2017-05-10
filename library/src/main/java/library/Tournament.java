@@ -14,18 +14,17 @@ public class Tournament {
     private long id;
     private String name;
 
-    @OneToMany(mappedBy = "matches")
+    @OneToMany(targetEntity = Match.class)
     private List<Match> matches;
 
-    @OneToMany(mappedBy = "teams")
+    @OneToMany(targetEntity = Team.class)
     private List<Team> teams;
 
     public Tournament() {
         super();
     }
 
-    public Tournament(long id, String name, List<Match> matches, List<Team> teams) {
-        this.id = id;
+    public Tournament(String name, List<Match> matches, List<Team> teams) {
         this.name = name;
         this.matches = matches;
         this.teams = teams;

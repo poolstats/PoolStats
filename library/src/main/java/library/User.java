@@ -20,8 +20,7 @@ public class User {
         super();
     }
 
-    public User(long id, String username, UserStats userStats) {
-        this.id = id;
+    public User(String username, UserStats userStats) {
         this.username = username;
         this.userStats = userStats;
     }

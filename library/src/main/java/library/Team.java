@@ -14,15 +14,14 @@ public class Team {
     private long Id;
     private String name;
 
-    @OneToMany(mappedBy = "players")
+    @OneToMany(targetEntity = User.class)
     private List<User> players;
 
     public Team() {
         super();
     }
 
-    public Team(long id, String name, List<User> players) {
-        Id = id;
+    public Team(String name, List<User> players) {
         this.name = name;
         this.players = players;
     }

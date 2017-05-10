@@ -16,15 +16,14 @@ public class Pocket {
     private long Id;
     private PocketLocation pocketLocation;
 
-    @OneToMany(mappedBy = "pottedBalls")
+    @OneToMany(targetEntity = Ball.class)
     private List<Ball> pottedBalls;
 
     public Pocket() {
         super();
     }
 
-    public Pocket(long id, PocketLocation pocketLocation) {
-        Id = id;
+    public Pocket(PocketLocation pocketLocation) {
         this.pocketLocation = pocketLocation;
 
         pottedBalls = new ArrayList<>();
