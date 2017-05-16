@@ -38,22 +38,43 @@ public class TableLogic {
     }
 
     private Table createEightBallTable() {
-        List<Ball> balls = new ArrayList<>();
-        List<Pocket> pockets = new ArrayList<>();
-
-        balls.add(new Ball(1, Ball.BallType.SOLID, Ball.BallColor.YELLOW, null));
-        balls.add(new Ball(2, Ball.BallType.STRIPED, Ball.BallColor.BLUE, null));
-
-        // TODO: create rest of balls and pockets and persist that then add to table.
-
-        balls = persistBalls(balls);
-        pockets = persistPockets(pockets);
+        List<Ball> balls = createBallsEightBallTable();
+        List<Pocket> pockets = createPocketsForTable();
 
         Table table = new Table(pockets, balls);
 
         table = tableRepo.createTable(table);
 
         return table;
+    }
+
+    private List<Ball> createBallsEightBallTable() {
+        List<Ball> balls = new ArrayList<>();
+
+        balls.add(new Ball(1, Ball.BallType.SOLID, Ball.BallColor.YELLOW, null));
+        balls.add(new Ball(2, Ball.BallType.STRIPED, Ball.BallColor.BLUE, null));
+        balls.add(new Ball(3, Ball.BallType.SOLID, Ball.BallColor.RED, null));
+        balls.add(new Ball(4, Ball.BallType.STRIPED, Ball.BallColor.PURPLE, null));
+        balls.add(new Ball(5, Ball.BallType.SOLID, Ball.BallColor.ORANGE, null));
+        balls.add(new Ball(6, Ball.BallType.STRIPED, Ball.BallColor.GREEN, null));
+        balls.add(new Ball(7, Ball.BallType.SOLID, Ball.BallColor.MAROON, null));
+        balls.add(new Ball(8, Ball.BallType.STRIPED, Ball.BallColor.BLACK, null));
+        balls.add(new Ball(0, Ball.BallType.CUE, Ball.BallColor.WHITE, null));
+
+        return persistBalls(balls);
+    }
+
+    private List<Pocket> createPocketsForTable() {
+        List<Pocket> pockets = new ArrayList<>();
+
+        pockets.add(new Pocket(Pocket.PocketLocation.TOP_LEFT));
+        pockets.add(new Pocket(Pocket.PocketLocation.TOP_MID));
+        pockets.add(new Pocket(Pocket.PocketLocation.TOP_RIGHT));
+        pockets.add(new Pocket(Pocket.PocketLocation.BOTTOM_LEFT));
+        pockets.add(new Pocket(Pocket.PocketLocation.BOTTOM_MID));
+        pockets.add(new Pocket(Pocket.PocketLocation.BOTTOM_RIGHT));
+
+        return persistPockets(pockets);
     }
 
     private Table createNineBallTable() {

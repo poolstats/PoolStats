@@ -86,6 +86,6 @@ public class Ball {
         BLACK,
         WHITE,
         ORANGE,
-        BROWN
+        MAROON
     }
 }
