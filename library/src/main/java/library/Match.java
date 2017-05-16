@@ -25,13 +25,16 @@ public class Match {
     @OneToMany(targetEntity = Turn.class)
     private List<Turn> turns;
 
+    private MatchType matchType;
+
     public Match() {
         super();
     }
 
-    public Match(String name, Table table, Team team1, Team team2) {
+    public Match(String name, Table table, Team team1, Team team2, MatchType matchType) {
         this.name = name;
         this.table = table;
+        this.matchType = matchType;
 
         turns = new ArrayList<>();
 

@@ -15,11 +15,10 @@ public class MatchLogic {
         this.matchRepo = new MatchRepo();
     }
 
-    public Match createMatch(String name, Table table, Team team1, Team team2) {
-        Match match = new Match(name, table, team1, team2);
+    public Match createMatch(String name, Team team1, Team team2, Match.MatchType matchType) {
+        Table table = new TableLogic().createTable(matchType);
+        Match match = new Match(name, table, team1, team2, matchType);
 
-        match = matchRepo.createMatch(match);
-
-        return match;
+        return matchRepo.createMatch(match);
     }
 }
