@@ -52,13 +52,20 @@ public class TableLogic {
         List<Ball> balls = new ArrayList<>();
 
         balls.add(new Ball(1, Ball.BallType.SOLID, Ball.BallColor.YELLOW, null));
-        balls.add(new Ball(2, Ball.BallType.STRIPED, Ball.BallColor.BLUE, null));
+        balls.add(new Ball(2, Ball.BallType.SOLID, Ball.BallColor.BLUE, null));
         balls.add(new Ball(3, Ball.BallType.SOLID, Ball.BallColor.RED, null));
-        balls.add(new Ball(4, Ball.BallType.STRIPED, Ball.BallColor.PURPLE, null));
+        balls.add(new Ball(4, Ball.BallType.SOLID, Ball.BallColor.PURPLE, null));
         balls.add(new Ball(5, Ball.BallType.SOLID, Ball.BallColor.ORANGE, null));
-        balls.add(new Ball(6, Ball.BallType.STRIPED, Ball.BallColor.GREEN, null));
+        balls.add(new Ball(6, Ball.BallType.SOLID, Ball.BallColor.GREEN, null));
         balls.add(new Ball(7, Ball.BallType.SOLID, Ball.BallColor.MAROON, null));
-        balls.add(new Ball(8, Ball.BallType.STRIPED, Ball.BallColor.BLACK, null));
+        balls.add(new Ball(8, Ball.BallType.SOLID, Ball.BallColor.BLACK, null));
+        balls.add(new Ball(9, Ball.BallType.STRIPED, Ball.BallColor.YELLOW, null));
+        balls.add(new Ball(10, Ball.BallType.STRIPED, Ball.BallColor.BLUE, null));
+        balls.add(new Ball(11, Ball.BallType.STRIPED, Ball.BallColor.RED, null));
+        balls.add(new Ball(12, Ball.BallType.STRIPED, Ball.BallColor.PURPLE, null));
+        balls.add(new Ball(13, Ball.BallType.STRIPED, Ball.BallColor.ORANGE, null));
+        balls.add(new Ball(14, Ball.BallType.STRIPED, Ball.BallColor.GREEN, null));
+        balls.add(new Ball(15, Ball.BallType.STRIPED, Ball.BallColor.MAROON, null));
         balls.add(new Ball(0, Ball.BallType.CUE, Ball.BallColor.WHITE, null));
 
         return persistBalls(balls);
