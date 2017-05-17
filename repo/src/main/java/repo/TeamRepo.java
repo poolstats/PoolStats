@@ -23,8 +23,8 @@ public class TeamRepo {
     }
 
     public Team getTeamByUser(User user) {
-        Query query = (Query) connector.getEntityManager().createQuery("SELECT u FROM User u WHERE u.id = :id");
-        query.setParameter("id", user.getId());
+        Query query = (Query) connector.getEntityManager().createQuery("SELECT u FROM User u WHERE u.username = :username");
+        query.setParameter("username", user.getUsername());
         User u = (User) query.getSingleResult();
         return u.getTeam();
     }

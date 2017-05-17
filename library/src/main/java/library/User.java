@@ -8,9 +8,6 @@ import javax.persistence.*;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
     private String username;
 
     @OneToOne
@@ -29,14 +26,6 @@ public class User {
         this.userStats = userStats;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -53,11 +42,11 @@ public class User {
         this.userStats = userStats;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
-    }
-
     public Team getTeam() {
         return this.team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }
