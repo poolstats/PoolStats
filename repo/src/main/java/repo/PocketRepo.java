@@ -11,7 +11,7 @@ public class PocketRepo {
     private JPAConnector connector;
 
     public PocketRepo() {
-        this.connector = new JPAConnector();
+        this.connector = JPAConnector.getInstance();
     }
 
     public Pocket createPocket(Pocket pocket) {

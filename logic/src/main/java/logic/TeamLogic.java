@@ -3,10 +3,9 @@ package logic;
 import library.Team;
 import library.User;
 import repo.TeamRepo;
+import repo.connector.JPAConnector;
 
 import javax.persistence.NoResultException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Jandie on 2017-05-16.
@@ -19,7 +18,9 @@ public class TeamLogic {
     }
 
     public void deleteFromTeam(Team team, User user) {
-        teamRepo.removeUserFromTeam(team, user);
+        team.getPlayers().remove(user);
+        user.setTeam(null);
+        JPAConnector.getInstance().commitTransaction();
     }
 
     public Team getTeamByUser(User user) {
@@ -37,16 +38,19 @@ public class TeamLogic {
 
         try{
              team = teamRepo.getTeamByName(teamName);
-             team.getPlayers().add(user);
-             teamRepo.addTeam(team);
+            team.addMember(user);
+             
+            JPAConnector.getInstance().commitTransaction();
 
              return team;
 
         } catch (NoResultException ex) {
 
             team = new Team(teamName);
+            teamRepo.createTeam(team);
+
             team.addMember(user);
-            teamRepo.addUserToTeam(team, user);
+            JPAConnector.getInstance().commitTransaction();
 
             return team;
         }

@@ -11,7 +11,7 @@ public class TurnRepo {
     private JPAConnector connector;
 
     public TurnRepo() {
-        this.connector = new JPAConnector();
+        this.connector = JPAConnector.getInstance();
     }
 
     public Turn createTurn(Turn turn) {

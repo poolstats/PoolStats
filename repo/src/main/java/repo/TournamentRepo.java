@@ -10,7 +10,7 @@ public class TournamentRepo {
     private JPAConnector connector;
 
     public TournamentRepo() {
-        this.connector = new JPAConnector();
+        this.connector = JPAConnector.getInstance();
     }
 
     public Tournament createTournament(Tournament tournament) {

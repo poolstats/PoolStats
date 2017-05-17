@@ -10,7 +10,7 @@ public class BallRepo {
     private JPAConnector connector;
 
     public BallRepo() {
-        this.connector = new JPAConnector();
+        this.connector = JPAConnector.getInstance();
     }
 
     public Ball createBall(Ball ball) {

@@ -1,7 +1,6 @@
 package repo;
 
 import library.User;
-import library.UserStats;
 import repo.connector.JPAConnector;
 
 import javax.persistence.NoResultException;
@@ -17,7 +16,7 @@ public class UserRepo {
     private JPAConnector connector;
 
     public UserRepo() {
-        this.connector = new JPAConnector();
+        this.connector = JPAConnector.getInstance();
     }
 
     public User getUser(String username) throws NoResultException {
@@ -46,12 +45,8 @@ public class UserRepo {
     }
 
     public void addUser(User user) {
-        connector.getEntityManager().getTransaction().begin();
-
         connector.getEntityManager().persist(user.getUserStats());
         connector.getEntityManager().persist(user);
-
-        connector.getEntityManager().getTransaction().commit();
     }
 
     public void deleteUser(String username) {

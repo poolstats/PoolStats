@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import logic.TeamLogic;
 import ui.Application;
-import ui.SessionData;
 
 import java.net.URL;
 import java.util.Objects;
@@ -50,6 +49,7 @@ public class MainScreenController implements Initializable {
         } else if(Objects.equals(teamConfirmButton.getText(), "X")) {
             teamLogic.deleteFromTeam(application.getSessionData().userTeam, application.getSessionData().currentUser);
             application.getSessionData().userTeam = null;
+            application.getSessionData().currentUser.setTeam(null);
 
             teamConfirmButton.setText("OK");
             teamNameField.setDisable(false);

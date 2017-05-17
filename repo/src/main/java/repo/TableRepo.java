@@ -10,7 +10,7 @@ public class TableRepo {
     private JPAConnector connector;
 
     public TableRepo() {
-        this.connector = new JPAConnector();
+        this.connector = JPAConnector.getInstance();
     }
 
     public Table createTable(Table table) {

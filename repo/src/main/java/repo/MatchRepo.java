@@ -10,7 +10,7 @@ public class MatchRepo {
     private JPAConnector connector;
 
     public MatchRepo() {
-        this.connector = new JPAConnector();
+        this.connector = JPAConnector.getInstance();
     }
 
     public Match createMatch(Match match) {

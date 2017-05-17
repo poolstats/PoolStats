@@ -3,8 +3,8 @@ package repo;
 import library.Team;
 import library.User;
 import repo.connector.JPAConnector;
+
 import javax.persistence.Query;
-import java.util.List;
 
 /**
  * Created by Jandie on 2017-05-16.
@@ -13,22 +13,20 @@ public class TeamRepo {
     private JPAConnector connector;
 
     public TeamRepo() {
-        this.connector = new JPAConnector();
+        this.connector = JPAConnector.getInstance();
     }
 
     public void addTeam(Team team) {
         connector.getEntityManager().getTransaction().begin();
-
         connector.getEntityManager().persist(team);
-
         connector.getEntityManager().getTransaction().commit();
     }
 
     public void addUserToTeam(Team team, User user) {
         connector.getEntityManager().getTransaction().begin();
 
-        connector.getEntityManager().persist(team);
-        connector.getEntityManager().persist(user);
+        connector.getEntityManager().merge(team);
+        //connector.getEntityManager().merge(user);
 
         connector.getEntityManager().getTransaction().commit();
     }
@@ -59,20 +57,12 @@ public class TeamRepo {
     }
   
     public Team createTeam(Team team) {
-        connector.getEntityManager().getTransaction().begin();
         connector.getEntityManager().persist(team);
-
-        connector.getEntityManager().getTransaction().commit();
-
         return team;
     }
 
     public Team updateTeam(Team team) {
-        connector.getEntityManager().getTransaction().begin();
         connector.getEntityManager().persist(team);
-
-        connector.getEntityManager().getTransaction().commit();
-
         return team;
     }
 

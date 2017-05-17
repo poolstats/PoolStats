@@ -3,6 +3,7 @@ package logic;
 import library.User;
 import library.UserStats;
 import repo.UserRepo;
+import repo.connector.JPAConnector;
 
 import javax.persistence.NoResultException;
 import java.util.List;
@@ -27,6 +28,7 @@ public class UserLogic {
             User user = new User(username, userStats);
 
             userRepo.addUser(user);
+            JPAConnector.getInstance().commitTransaction();
             return user;
         }
     }
