@@ -16,21 +16,6 @@ public class TeamRepo {
         this.connector = JPAConnector.getInstance();
     }
 
-    public void addTeam(Team team) {
-        connector.getEntityManager().getTransaction().begin();
-        connector.getEntityManager().persist(team);
-        connector.getEntityManager().getTransaction().commit();
-    }
-
-    public void addUserToTeam(Team team, User user) {
-        connector.getEntityManager().getTransaction().begin();
-
-        connector.getEntityManager().merge(team);
-        //connector.getEntityManager().merge(user);
-
-        connector.getEntityManager().getTransaction().commit();
-    }
-
     public Team getTeamByName(String teamName) {
         Query query = (Query) connector.getEntityManager().createQuery("SELECT t FROM Team t WHERE t.name = :teamname ");
         query.setParameter("teamname", teamName);
@@ -43,33 +28,9 @@ public class TeamRepo {
         User u = (User) query.getSingleResult();
         return u.getTeam();
     }
-
-    public void removeUserFromTeam(Team t, User user) {
-        t.getPlayers().remove(user);
-        connector.getEntityManager().getTransaction().begin();
-
-        connector.getEntityManager().persist(t);
-
-        user.setTeam(null);
-        connector.getEntityManager().persist(user);
-
-        connector.getEntityManager().getTransaction().commit();
-    }
   
     public Team createTeam(Team team) {
         connector.getEntityManager().persist(team);
         return team;
-    }
-
-    public Team updateTeam(Team team) {
-        connector.getEntityManager().persist(team);
-        return team;
-    }
-
-    public void removeTeam(Team team) {
-        connector.getEntityManager().getTransaction().begin();
-        connector.getEntityManager().remove(team);
-
-        connector.getEntityManager().getTransaction().commit();
     }
 }

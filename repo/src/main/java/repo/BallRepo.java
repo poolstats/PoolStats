@@ -21,20 +21,4 @@ public class BallRepo {
 
         return ball;
     }
-
-    public Ball updateBall(Ball ball) {
-        connector.getEntityManager().getTransaction().begin();
-        connector.getEntityManager().persist(ball);
-
-        connector.getEntityManager().getTransaction().commit();
-
-        return ball;
-    }
-
-    public void removeBall(Ball ball) {
-        connector.getEntityManager().getTransaction().begin();
-        connector.getEntityManager().remove(ball);
-
-        connector.getEntityManager().getTransaction().commit();
-    }
 }

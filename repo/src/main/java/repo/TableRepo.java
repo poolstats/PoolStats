@@ -21,20 +21,4 @@ public class TableRepo {
 
         return table;
     }
-
-    public Table updateTable(Table table) {
-        connector.getEntityManager().getTransaction().begin();
-        connector.getEntityManager().persist(table);
-
-        connector.getEntityManager().getTransaction().commit();
-
-        return table;
-    }
-
-    public void removeTable(Table table) {
-        connector.getEntityManager().getTransaction().begin();
-        connector.getEntityManager().remove(table);
-
-        connector.getEntityManager().getTransaction().commit();
-    }
 }

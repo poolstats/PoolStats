@@ -22,20 +22,4 @@ public class PocketRepo {
 
         return pocket;
     }
-
-    public Pocket updatePocket(Pocket pocket) {
-        connector.getEntityManager().getTransaction().begin();
-        connector.getEntityManager().persist(pocket);
-
-        connector.getEntityManager().getTransaction().commit();
-
-        return pocket;
-    }
-
-    public void removePocket(Pocket pocket) {
-        connector.getEntityManager().getTransaction().begin();
-        connector.getEntityManager().remove(pocket);
-
-        connector.getEntityManager().getTransaction().commit();
-    }
 }

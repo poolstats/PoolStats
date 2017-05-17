@@ -36,31 +36,8 @@ public class UserRepo {
         return (List<User>) query.getResultList();
     }
 
-    public void updateUser(User user) {
-        connector.getEntityManager().getTransaction().begin();
-
-        connector.getEntityManager().persist(user);
-
-        connector.getEntityManager().getTransaction().commit();
-    }
-
     public void addUser(User user) {
         connector.getEntityManager().persist(user.getUserStats());
         connector.getEntityManager().persist(user);
-    }
-
-    public void deleteUser(String username) {
-        Query query = connector.getEntityManager()
-                .createQuery("SELECT u FROM User u WHERE u.username = :username");
-
-        query.setParameter("username", username);
-        User users = (User) query.getSingleResult();
-
-        connector.getEntityManager().getTransaction().begin();
-
-        connector.getEntityManager().remove(users);
-        connector.getEntityManager().remove(users.getUserStats());
-
-        connector.getEntityManager().getTransaction().commit();
     }
 }
