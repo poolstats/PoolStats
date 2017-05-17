@@ -3,16 +3,13 @@ package repo;
 import library.Team;
 import library.User;
 import repo.connector.JPAConnector;
-
 import javax.persistence.Query;
 import java.util.List;
 
-
 /**
- * Created by guillaimejanssen on 10/05/2017.
+ * Created by Jandie on 2017-05-16.
  */
 public class TeamRepo {
-
     private JPAConnector connector;
 
     public TeamRepo() {
@@ -59,5 +56,27 @@ public class TeamRepo {
         connector.getEntityManager().persist(user);
 
         connector.getEntityManager().getTransaction().commit();
+    }
+  
+    public Team createTeam(Team team) {
+        connector.getEntityManager().persist(team);
+
+        connector.commitTransaction();
+
+        return team;
+    }
+
+    public Team updateTeam(Team team) {
+        connector.getEntityManager().persist(team);
+
+        connector.commitTransaction();
+
+        return team;
+    }
+
+    public void removeTeam(Team team) {
+        connector.getEntityManager().remove(team);
+
+        connector.commitTransaction();
     }
 }

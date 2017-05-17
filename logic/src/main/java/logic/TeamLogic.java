@@ -9,10 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by guillaimejanssen on 10/05/2017.
+ * Created by Jandie on 2017-05-16.
  */
 public class TeamLogic {
-
     private TeamRepo teamRepo;
 
     public TeamLogic() {
@@ -51,5 +50,13 @@ public class TeamLogic {
 
             return team;
         }
+    }
+      
+    public Team createTeam(String teamName, List<User> players) {
+        Team team = new Team(teamName, players);
+
+        team = teamRepo.createTeam(team);
+
+        return team;
     }
 }

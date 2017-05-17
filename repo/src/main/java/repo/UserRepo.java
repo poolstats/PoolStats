@@ -6,6 +6,7 @@ import repo.connector.JPAConnector;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import java.util.List;
 
 
 /**
@@ -23,6 +24,17 @@ public class UserRepo {
         Query query = connector.getEntityManager().createQuery("select u from User as u where u.username = :username");
         query.setParameter("username", username);
         return (User) query.getSingleResult();
+    }
+
+    public List<User> searchUser(String username) {
+        String search = "%" + username + "%";
+
+        Query query = connector.getEntityManager()
+                .createQuery("SELECT u FROM User u WHERE u.username LIKE :username");
+
+        query.setParameter("username", search);
+
+        return (List<User>) query.getResultList();
     }
 
     public void updateUser(User user) {

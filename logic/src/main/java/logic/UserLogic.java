@@ -5,6 +5,7 @@ import library.UserStats;
 import repo.UserRepo;
 
 import javax.persistence.NoResultException;
+import java.util.List;
 
 /**
  * Created by Jandie on 2017-05-10.
@@ -28,5 +29,9 @@ public class UserLogic {
             userRepo.addUser(user);
             return user;
         }
+    }
+
+    public List<User> searchUser(String username) {
+        return userRepo.searchUser(username);
     }
 }
