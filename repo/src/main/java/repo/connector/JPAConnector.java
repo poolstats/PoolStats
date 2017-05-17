@@ -18,7 +18,6 @@ public class JPAConnector implements AutoCloseable {
     public JPAConnector() {
         entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
     }
 
     /**
@@ -26,13 +25,6 @@ public class JPAConnector implements AutoCloseable {
      */
     public EntityManager getEntityManager() {
         return this.entityManager;
-    }
-
-    /**
-     * USe this to end a transaction with the entityManager
-     */
-    public void commitTransaction() {
-        this.entityManager.getTransaction().commit();
     }
 
     /**

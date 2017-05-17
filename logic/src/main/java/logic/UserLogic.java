@@ -1,6 +1,7 @@
 package logic;
 
 import library.User;
+import library.UserStats;
 import repo.UserRepo;
 
 import javax.persistence.NoResultException;
@@ -17,12 +18,16 @@ public class UserLogic {
     }
 
     public User loginUser(String username) {
+
         try {
             return userRepo.getUser(username);
         } catch (NoResultException e) {
-            userRepo.addUser(username);
 
-            return userRepo.getUser(username);
+            UserStats userStats = new UserStats(0, 0, 0, 0, 0, 0, 0, 0);
+            User user = new User(username, userStats);
+
+            userRepo.addUser(user);
+            return user;
         }
     }
 

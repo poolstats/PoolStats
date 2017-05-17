@@ -9,7 +9,6 @@ import library.UserStats;
  */
 public class SessionData {
     public Team userTeam;
-
     public User currentUser;
     public UserStats userStats;
 }
