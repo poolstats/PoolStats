@@ -50,8 +50,10 @@ public class StartScreenController implements Initializable {
                     a.showAndWait();
 
                 } else {
+
+                    application.getSessionData().currentUser = new UserLogic().loginUser(usernameField.getText());
+
                     try {
-                        application.getSessionData().currentUser = new UserLogic().loginUser(usernameField.getText());
                         application.loadMainScreen();
                     } catch (Exception e) {
                         e.printStackTrace();

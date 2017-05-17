@@ -6,15 +6,19 @@ import javax.persistence.*;
  * Created by Jandie on 2017-05-03.
  */
 @Entity
-@javax.persistence.Table
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     private String username;
 
     @OneToOne
     private UserStats userStats;
+
+    @ManyToOne
+    @JoinColumn(name="TEAM_ID")
+    private Team team;
 
     public User() {
         super();
@@ -47,5 +51,13 @@ public class User {
 
     public void setUserStats(UserStats userStats) {
         this.userStats = userStats;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    public Team getTeam() {
+        return this.team;
     }
 }

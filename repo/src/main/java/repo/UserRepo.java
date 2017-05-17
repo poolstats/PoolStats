@@ -20,30 +20,26 @@ public class UserRepo {
     }
 
     public User getUser(String username) throws NoResultException {
-        Query query = connector.getEntityManager()
-                .createQuery("SELECT u FROM User u WHERE u.username = :username");
-
+        Query query = connector.getEntityManager().createQuery("select u from User as u where u.username = :username");
         query.setParameter("username", username);
-
-        User returnValue = (User) query.getSingleResult();
-
-        return returnValue;
+        return (User) query.getSingleResult();
     }
 
     public void updateUser(User user) {
+        connector.getEntityManager().getTransaction().begin();
+
         connector.getEntityManager().persist(user);
 
-        connector.commitTransaction();
+        connector.getEntityManager().getTransaction().commit();
     }
 
-    public void addUser(String username) {
-        UserStats userStats = new UserStats(0, 0, 0, 0, 0, 0, 0, 0);
-        User user = new User(username, userStats);
+    public void addUser(User user) {
+        connector.getEntityManager().getTransaction().begin();
 
-        connector.getEntityManager().persist(userStats);
+        connector.getEntityManager().persist(user.getUserStats());
         connector.getEntityManager().persist(user);
 
-        connector.commitTransaction();
+        connector.getEntityManager().getTransaction().commit();
     }
 
     public void deleteUser(String username) {
@@ -53,9 +49,11 @@ public class UserRepo {
         query.setParameter("username", username);
         User users = (User) query.getSingleResult();
 
+        connector.getEntityManager().getTransaction().begin();
+
         connector.getEntityManager().remove(users);
         connector.getEntityManager().remove(users.getUserStats());
 
-        connector.commitTransaction();
+        connector.getEntityManager().getTransaction().commit();
     }
 }
