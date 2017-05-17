@@ -50,6 +50,7 @@ public class TeamLogic {
             teamRepo.createTeam(team);
 
             team.addMember(user);
+
             JPAConnector.getInstance().commitTransaction();
 
             return team;

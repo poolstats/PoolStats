@@ -37,5 +37,7 @@ public class UserRepo {
     public void addUser(User user) {
         connector.getEntityManager().persist(user.getUserStats());
         connector.getEntityManager().persist(user);
+
+        JPAConnector.getInstance().commitTransaction();
     }
 }
