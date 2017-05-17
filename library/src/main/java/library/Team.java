@@ -1,6 +1,7 @@
 package library;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,16 +15,16 @@ public class Team {
     private long Id;
     private String name;
 
-    @OneToMany(targetEntity = User.class)
+    @OneToMany(mappedBy="team", cascade = {CascadeType.PERSIST})
     private List<User> players;
 
     public Team() {
         super();
     }
 
-    public Team(String name, List<User> players) {
+    public Team(String name) {
         this.name = name;
-        this.players = players;
+        this.players = new ArrayList<>();
     }
 
     public long getId() {
@@ -48,5 +49,12 @@ public class Team {
 
     public void setPlayers(List<User> players) {
         this.players = players;
+    }
+
+    public void addMember(User user) {
+        if(!players.contains(user)) {
+            players.add(user);
+        }
+        user.setTeam(this);
     }
 }
