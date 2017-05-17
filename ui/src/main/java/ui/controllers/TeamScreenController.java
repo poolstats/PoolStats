@@ -1,5 +1,7 @@
 package ui.controllers;
 
+import com.jfoenix.controls.JFXListView;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import ui.Application;
 
@@ -12,6 +14,9 @@ import java.util.ResourceBundle;
 public class TeamScreenController implements Initializable {
 
     private Application application;
+
+    @FXML
+    private JFXListView teamsListView;
 
     public TeamScreenController(Application application) {
         this.application = application;
@@ -27,6 +32,10 @@ public class TeamScreenController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
+    private void loadTeamsInSession() {
 
     }
 }

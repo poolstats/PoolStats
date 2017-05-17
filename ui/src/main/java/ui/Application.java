@@ -8,6 +8,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import ui.controllers.MainScreenController;
 import ui.controllers.StartScreenController;
+import ui.controllers.TeamScreenController;
 
 /**
  * Created by guillaimejanssen on 03/05/2017.
@@ -74,7 +75,7 @@ public class Application extends javafx.application.Application {
      */
     public void loadTeamScreen() throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/TeamScreen.fxml"));
-        StartScreenController controller = new StartScreenController(this);
+        TeamScreenController controller = new TeamScreenController(this);
         fxmlLoader.setController(controller);
         setStage(fxmlLoader.load());
     }

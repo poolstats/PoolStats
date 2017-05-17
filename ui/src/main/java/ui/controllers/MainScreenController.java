@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import logic.TeamLogic;
 import ui.Application;
 
@@ -23,6 +24,8 @@ public class MainScreenController implements Initializable {
     private JFXButton logoutButton;
     @FXML
     private ImageView createMatchImageView;
+    @FXML
+    private ImageView teamOverviewImageView;
 
     public MainScreenController(Application application) {
         this.application = application;
@@ -32,11 +35,20 @@ public class MainScreenController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         logoutButton.setOnAction(this::handleLogoutAction);
+        teamOverviewImageView.setOnMouseClicked(this::goToTeamScreen);
         initializeTeam();
     }
 
     private void goToMatchScreen(ActionEvent actionEvent) {
 
+    }
+
+    private void goToTeamScreen(MouseEvent mouseEvent) {
+        try {
+            application.loadTeamScreen();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void handleLogoutAction(ActionEvent actionEvent) {
