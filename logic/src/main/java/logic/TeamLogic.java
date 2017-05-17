@@ -52,8 +52,8 @@ public class TeamLogic {
         }
     }
       
-    public Team createTeam(String teamName, List<User> players) {
-        Team team = new Team(teamName, players);
+    public Team createTeam(String teamName) {
+        Team team = new Team(teamName);
 
         team = teamRepo.createTeam(team);
 
