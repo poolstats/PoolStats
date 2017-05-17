@@ -14,24 +14,27 @@ public class BallRepo {
     }
 
     public Ball createBall(Ball ball) {
+        connector.getEntityManager().getTransaction().begin();
         connector.getEntityManager().persist(ball);
 
-        connector.commitTransaction();
+        connector.getEntityManager().getTransaction().commit();
 
         return ball;
     }
 
     public Ball updateBall(Ball ball) {
+        connector.getEntityManager().getTransaction().begin();
         connector.getEntityManager().persist(ball);
 
-        connector.commitTransaction();
+        connector.getEntityManager().getTransaction().commit();
 
         return ball;
     }
 
     public void removeBall(Ball ball) {
+        connector.getEntityManager().getTransaction().begin();
         connector.getEntityManager().remove(ball);
 
-        connector.commitTransaction();
+        connector.getEntityManager().getTransaction().commit();
     }
 }

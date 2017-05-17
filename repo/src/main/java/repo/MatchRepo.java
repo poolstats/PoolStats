@@ -14,24 +14,27 @@ public class MatchRepo {
     }
 
     public Match createMatch(Match match) {
+        connector.getEntityManager().getTransaction().begin();
         connector.getEntityManager().persist(match);
 
-        connector.commitTransaction();
+        connector.getEntityManager().getTransaction().commit();
 
         return match;
     }
 
     public Match updateMatch(Match match) {
+        connector.getEntityManager().getTransaction().begin();
         connector.getEntityManager().persist(match);
 
-        connector.commitTransaction();
+        connector.getEntityManager().getTransaction().commit();
 
         return match;
     }
 
     public void removeMatch(Match match) {
+        connector.getEntityManager().getTransaction().begin();
         connector.getEntityManager().remove(match);
 
-        connector.commitTransaction();
+        connector.getEntityManager().getTransaction().commit();
     }
 }

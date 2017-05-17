@@ -59,24 +59,27 @@ public class TeamRepo {
     }
   
     public Team createTeam(Team team) {
+        connector.getEntityManager().getTransaction().begin();
         connector.getEntityManager().persist(team);
 
-        connector.commitTransaction();
+        connector.getEntityManager().getTransaction().commit();
 
         return team;
     }
 
     public Team updateTeam(Team team) {
+        connector.getEntityManager().getTransaction().begin();
         connector.getEntityManager().persist(team);
 
-        connector.commitTransaction();
+        connector.getEntityManager().getTransaction().commit();
 
         return team;
     }
 
     public void removeTeam(Team team) {
+        connector.getEntityManager().getTransaction().begin();
         connector.getEntityManager().remove(team);
 
-        connector.commitTransaction();
+        connector.getEntityManager().getTransaction().commit();
     }
 }

@@ -15,24 +15,28 @@ public class TurnRepo {
     }
 
     public Turn createTurn(Turn turn) {
+        connector.getEntityManager().getTransaction().begin();
         connector.getEntityManager().persist(turn);
 
-        connector.commitTransaction();
+        connector.getEntityManager().getTransaction().commit();
 
         return turn;
     }
 
     public Turn updateTurn(Turn turn) {
+        connector.getEntityManager().getTransaction().begin();
         connector.getEntityManager().persist(turn);
 
-        connector.commitTransaction();
+        connector.getEntityManager().getTransaction().commit();
 
         return turn;
     }
 
     public void removeTurn(Turn turn) {
+        connector.getEntityManager().getTransaction().begin();
+
         connector.getEntityManager().persist(turn);
 
-        connector.commitTransaction();
+        connector.getEntityManager().getTransaction().commit();
     }
 }

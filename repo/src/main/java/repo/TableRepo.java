@@ -14,24 +14,27 @@ public class TableRepo {
     }
 
     public Table createTable(Table table) {
+        connector.getEntityManager().getTransaction().begin();
         connector.getEntityManager().persist(table);
 
-        connector.commitTransaction();
+        connector.getEntityManager().getTransaction().commit();
 
         return table;
     }
 
     public Table updateTable(Table table) {
+        connector.getEntityManager().getTransaction().begin();
         connector.getEntityManager().persist(table);
 
-        connector.commitTransaction();
+        connector.getEntityManager().getTransaction().commit();
 
         return table;
     }
 
     public void removeTable(Table table) {
+        connector.getEntityManager().getTransaction().begin();
         connector.getEntityManager().remove(table);
 
-        connector.commitTransaction();
+        connector.getEntityManager().getTransaction().commit();
     }
 }
