@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.ImageView;
 import logic.TeamLogic;
 import ui.Application;
 
@@ -21,7 +22,7 @@ public class MainScreenController implements Initializable {
     @FXML
     private JFXButton logoutButton;
     @FXML
-    private JFXButton matchButton;
+    private ImageView createMatchImageView;
 
     public MainScreenController(Application application) {
         this.application = application;
