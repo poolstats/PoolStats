@@ -39,7 +39,7 @@ public class TeamLogic {
         try{
              team = teamRepo.getTeamByName(teamName);
             team.addMember(user);
-             
+
             JPAConnector.getInstance().commitTransaction();
 
              return team;
