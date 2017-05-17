@@ -55,6 +55,7 @@ public class Team {
         if(!players.contains(user)) {
             players.add(user);
         }
+
         user.setTeam(this);
     }
 }

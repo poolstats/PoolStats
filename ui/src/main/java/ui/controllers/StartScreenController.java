@@ -3,7 +3,6 @@ package ui.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -35,31 +34,30 @@ public class StartScreenController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         usernameField.setStyle("-fx-text-fill: black; -fx-font-size: 18;");
-        startButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
 
-                // If none username filled in: Send alert
-                if(usernameField.getText().isEmpty()){
-                    Alert a = new Alert(Alert.AlertType.WARNING);
-                    a.setTitle("Warning");
-                    a.setHeaderText("No username!");
-                    a.setResizable(true);
-                    String content = "Please fill in a valid username";
-                    a.setContentText(content);
-                    a.showAndWait();
+        startButton.setOnAction(this::login);
+    }
 
-                } else {
+    public void login(ActionEvent event) {
 
-                    application.getSessionData().currentUser = new UserLogic().loginUser(usernameField.getText());
+        // If none username filled in: Send alert
+        if (usernameField.getText().isEmpty()) {
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setTitle("Warning");
+            a.setHeaderText("No username!");
+            a.setResizable(true);
+            String content = "Please fill in a valid username";
+            a.setContentText(content);
+            a.showAndWait();
 
-                    try {
-                        application.loadMainScreen();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
+        } else {
+            application.getSessionData().currentUser = new UserLogic().loginUser(usernameField.getText());
+
+            try {
+                application.loadMainScreen();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        });
+        }
     }
 }

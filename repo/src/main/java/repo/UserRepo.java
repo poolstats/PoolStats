@@ -20,9 +20,7 @@ public class UserRepo {
     }
 
     public User getUser(String username) throws NoResultException {
-        Query query = connector.getEntityManager().createQuery("select u from User as u where u.username = :username");
-        query.setParameter("username", username);
-        return (User) query.getSingleResult();
+        return connector.getEntityManager().find(User.class, username);
     }
 
     public List<User> searchUser(String username) {
@@ -39,5 +37,7 @@ public class UserRepo {
     public void addUser(User user) {
         connector.getEntityManager().persist(user.getUserStats());
         connector.getEntityManager().persist(user);
+
+        JPAConnector.getInstance().commitTransaction();
     }
 }

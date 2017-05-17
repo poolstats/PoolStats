@@ -9,23 +9,17 @@ import javafx.stage.Stage;
 import ui.controllers.MainScreenController;
 import ui.controllers.StartScreenController;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Paths;
-
 /**
  * Created by guillaimejanssen on 03/05/2017.
  */
 public class Application extends javafx.application.Application {
 
+    private Stage primaryStage;
+    private SessionData sessionData;
+
     public static void main(String[] args) {
         launch(args);
     }
-
-    private Stage primaryStage;
-    private SessionData sessionData;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -68,6 +62,18 @@ public class Application extends javafx.application.Application {
      */
     public void loadStartScreen() throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/StartScreen.fxml"));
+        StartScreenController controller = new StartScreenController(this);
+        fxmlLoader.setController(controller);
+        setStage(fxmlLoader.load());
+    }
+
+    /**
+     * Loading method for the team screen fxml
+     *
+     * @throws Exception When no .fxml file is found or can not be loaded
+     */
+    public void loadTeamScreen() throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/TeamScreen.fxml"));
         StartScreenController controller = new StartScreenController(this);
         fxmlLoader.setController(controller);
         setStage(fxmlLoader.load());

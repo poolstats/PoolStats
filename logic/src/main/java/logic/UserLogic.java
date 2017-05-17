@@ -3,9 +3,7 @@ package logic;
 import library.User;
 import library.UserStats;
 import repo.UserRepo;
-import repo.connector.JPAConnector;
 
-import javax.persistence.NoResultException;
 import java.util.List;
 
 /**
@@ -19,18 +17,18 @@ public class UserLogic {
     }
 
     public User loginUser(String username) {
+        User user = userRepo.getUser(username);
 
-        try {
-            return userRepo.getUser(username);
-        } catch (NoResultException e) {
-
+        if (user == null) {
             UserStats userStats = new UserStats(0, 0, 0, 0, 0, 0, 0, 0);
-            User user = new User(username, userStats);
+            user = new User(username, userStats);
 
             userRepo.addUser(user);
-            JPAConnector.getInstance().commitTransaction();
+
             return user;
         }
+
+        return user;
     }
 
     public List<User> searchUser(String username) {

@@ -1,15 +1,14 @@
 package ui.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.ImageView;
 import logic.TeamLogic;
 import ui.Application;
 
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -23,9 +22,7 @@ public class MainScreenController implements Initializable {
     @FXML
     private JFXButton logoutButton;
     @FXML
-    private JFXButton teamConfirmButton;
-    @FXML
-    private JFXTextField teamNameField;
+    private ImageView createMatchImageView;
 
     public MainScreenController(Application application) {
         this.application = application;
@@ -35,25 +32,11 @@ public class MainScreenController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         logoutButton.setOnAction(this::handleLogoutAction);
-        teamConfirmButton.setOnAction(this::handleConfirmTeamAction);
         initializeTeam();
     }
 
-    private void handleConfirmTeamAction(ActionEvent actionEvent) {
-        if(Objects.equals(teamConfirmButton.getText(), "OK")) {
-            application.getSessionData().userTeam = teamLogic.addToTeam(teamNameField.getText(), application.getSessionData().currentUser);
+    private void goToMatchScreen(ActionEvent actionEvent) {
 
-            teamConfirmButton.setText("X");
-            teamNameField.setDisable(true);
-
-        } else if(Objects.equals(teamConfirmButton.getText(), "X")) {
-            teamLogic.deleteFromTeam(application.getSessionData().userTeam, application.getSessionData().currentUser);
-            application.getSessionData().userTeam = null;
-            application.getSessionData().currentUser.setTeam(null);
-
-            teamConfirmButton.setText("OK");
-            teamNameField.setDisable(false);
-        }
     }
 
     private void handleLogoutAction(ActionEvent actionEvent) {
@@ -66,13 +49,7 @@ public class MainScreenController implements Initializable {
     }
 
     private void initializeTeam() {
-        application.getSessionData().userTeam = teamLogic.getTeamByUser(application.getSessionData().currentUser);
 
-        if(application.getSessionData().userTeam != null) {
-            teamNameField.setDisable(true);
-            teamNameField.setText(application.getSessionData().userTeam.getName());
-            teamConfirmButton.setText("X");
-        }
     }
 }
 
