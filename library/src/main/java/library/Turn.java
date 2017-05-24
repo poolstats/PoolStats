@@ -7,7 +7,6 @@ import java.util.List;
  * Created by Jandie on 2017-05-03.
  */
 @Entity
-@javax.persistence.Table
 public class Turn {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
