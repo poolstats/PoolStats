@@ -3,15 +3,12 @@ package ui.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import library.User;
-import repo.UserRepo;
+import logic.UserLogic;
 import ui.Application;
 
-import javax.persistence.NoResultException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -37,36 +34,30 @@ public class StartScreenController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         usernameField.setStyle("-fx-text-fill: black; -fx-font-size: 18;");
-        startButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
 
-                // If none username filled in: Send alert
-                if(usernameField.getText().isEmpty()){
-                    Alert a = new Alert(Alert.AlertType.WARNING);
-                    a.setTitle("Warning");
-                    a.setHeaderText("No username!");
-                    a.setResizable(true);
-                    String content = "Please fill in a valid username";
-                    a.setContentText(content);
-                    a.showAndWait();
+        startButton.setOnAction(this::login);
+    }
 
-                } else {
+    public void login(ActionEvent event) {
 
-                    UserRepo userRepo = new UserRepo();
-                    try {
-                      application.getSessionData().currentUser = userRepo.getUser(usernameField.getText());
-                      try {
-                          application.loadMainScreen();
-                      } catch (Exception e) {
-                          e.printStackTrace();
-                      }
+        // If none username filled in: Send alert
+        if (usernameField.getText().isEmpty()) {
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setTitle("Warning");
+            a.setHeaderText("No username!");
+            a.setResizable(true);
+            String content = "Please fill in a valid username";
+            a.setContentText(content);
+            a.showAndWait();
 
-                    } catch (NoResultException ex) {
-                        userRepo.addUser(usernameField.getText());
-                    }
-                }
+        } else {
+            application.getSessionData().currentUser = new UserLogic().loginUser(usernameField.getText());
+
+            try {
+                application.loadMainScreen();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        });
+        }
     }
 }

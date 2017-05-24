@@ -1,52 +1,43 @@
 package repo;
 
 import library.User;
-import library.UserStats;
-import logic.interfaces.IUser;
 import repo.connector.JPAConnector;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import java.util.List;
 
 
 /**
  * Created by Jandie on 2017-05-03.
  */
-public class UserRepo implements IUser {
+public class UserRepo {
 
     private JPAConnector connector;
 
     public UserRepo() {
-        this.connector = new JPAConnector();
+        this.connector = JPAConnector.getInstance();
     }
 
-    @Override
     public User getUser(String username) throws NoResultException {
-        Query query = connector.getEntityManager()
-                .createQuery("SELECT u FROM User u WHERE u.username = :username");
-        query.setParameter("username", username);
-        User returnValue = (User) query.getSingleResult();
-        return returnValue;
+        return connector.getEntityManager().find(User.class, username);
     }
 
-    @Override
-    public void addUser(String username) {
-        UserStats userStats = new UserStats(0, 0, 0, 0, 0, 0, 0, 0);
-        connector.getEntityManager().persist(userStats);
-        User user = new User(username, userStats);
+    public List<User> searchUser(String username) {
+        String search = "%" + username + "%";
+
+        Query query = connector.getEntityManager()
+                .createQuery("SELECT u FROM User u WHERE u.username LIKE :username");
+
+        query.setParameter("username", search);
+
+        return (List<User>) query.getResultList();
+    }
+
+    public void addUser(User user) {
+        connector.getEntityManager().persist(user.getUserStats());
         connector.getEntityManager().persist(user);
-        connector.commitTransaction();
-    }
 
-    @Override
-    public void deleteUser(String username) {
-        Query query = connector.getEntityManager()
-                .createQuery("SELECT u FROM User u WHERE u.username = :username");
-        query.setParameter("username", username);
-        User users = (User) query.getSingleResult();
-
-        connector.getEntityManager().remove(users);
-        connector.getEntityManager().remove(users.getUserStats());
-        connector.commitTransaction();
+        JPAConnector.getInstance().commitTransaction();
     }
 }
