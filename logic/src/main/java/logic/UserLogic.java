@@ -1,6 +1,6 @@
 package logic;
 
-import library.User;
+import library.Player;
 import library.UserStats;
 import repo.UserRepo;
 
@@ -16,22 +16,22 @@ public class UserLogic {
         userRepo = new UserRepo();
     }
 
-    public User loginUser(String username) {
-        User user = userRepo.getUser(username);
+    public Player loginUser(String username) {
+        Player player = userRepo.getUser(username);
 
-        if (user == null) {
+        if (player == null) {
             UserStats userStats = new UserStats(0, 0, 0, 0, 0, 0, 0, 0);
-            user = new User(username, userStats);
+            player = new Player(username, userStats);
 
-            userRepo.addUser(user);
+            userRepo.addUser(player);
 
-            return user;
+            return player;
         }
 
-        return user;
+        return player;
     }
 
-    public List<User> searchUser(String username) {
+    public List<Player> searchUser(String username) {
         return userRepo.searchUser(username);
     }
 }

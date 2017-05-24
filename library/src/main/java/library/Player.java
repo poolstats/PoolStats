@@ -20,7 +20,7 @@ public class Player extends User {
         super();
     }
 
-    public Player(String username, UserStats userStats, Team team) {
+    public Player(String username, UserStats userStats) {
         super(username);
         this.userStats = userStats;
         this.team = team;

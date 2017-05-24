@@ -1,7 +1,7 @@
 package repo;
 
+import library.Player;
 import library.Team;
-import library.User;
 import repo.connector.JPAConnector;
 
 import javax.persistence.Query;
@@ -22,18 +22,16 @@ public class TeamRepo {
         return (Team) query.getSingleResult();
     }
 
-    public Team getTeamByUser(User user) {
+    public Team getTeamByUser(Player player) {
         Query query = (Query) connector.getEntityManager().createQuery("SELECT u FROM User u WHERE u.username = :username");
-        query.setParameter("username", user.getUsername());
-        User u = (User) query.getSingleResult();
-        return u.getTeam();
+        query.setParameter("username", player.getUsername());
+        Player p = (Player) query.getSingleResult();
+        return p.getTeam();
     }
   
     public Team createTeam(Team team) {
         connector.getEntityManager().persist(team);
-
         connector.getEntityManager().getTransaction().commit();
-
         return team;
     }
 }

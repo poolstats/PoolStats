@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import logic.UserLogic;
 import ui.Application;
+import ui.SessionData;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -51,7 +52,7 @@ public class StartScreenController implements Initializable {
             a.showAndWait();
 
         } else {
-            application.getSessionData().currentUser = new UserLogic().loginUser(usernameField.getText());
+            application.getSessionData().addData(SessionData.CURRENT_USER, new UserLogic().loginUser(usernameField.getText()));
 
             try {
                 application.loadMainScreen();

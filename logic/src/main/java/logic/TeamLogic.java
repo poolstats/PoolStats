@@ -1,7 +1,7 @@
 package logic;
 
+import library.Player;
 import library.Team;
-import library.User;
 import repo.TeamRepo;
 import repo.connector.JPAConnector;
 
@@ -17,28 +17,28 @@ public class TeamLogic {
         this.teamRepo = new TeamRepo();
     }
 
-    public void deleteFromTeam(Team team, User user) {
-        team.getPlayers().remove(user);
-        user.setTeam(null);
+    public void deleteFromTeam(Team team, Player player) {
+        team.getPlayers().remove(player);
+        player.setTeam(null);
         JPAConnector.getInstance().commitTransaction();
     }
 
-    public Team getTeamByUser(User user) {
+    public Team getTeamByUser(Player player) {
 
         try{
-            return teamRepo.getTeamByUser(user);
+            return teamRepo.getTeamByUser(player);
 
         } catch (NoResultException ex) {
             return null;
         }
     }
 
-    public Team addToTeam(String teamName, User user) {
+    public Team addToTeam(String teamName, Player player) {
         Team team = null;
 
         try{
              team = teamRepo.getTeamByName(teamName);
-            team.addMember(user);
+            team.addMember(player);
 
             JPAConnector.getInstance().commitTransaction();
 
@@ -49,7 +49,7 @@ public class TeamLogic {
             team = new Team(teamName);
             teamRepo.createTeam(team);
 
-            team.addMember(user);
+            team.addMember(player);
 
             JPAConnector.getInstance().commitTransaction();
 
