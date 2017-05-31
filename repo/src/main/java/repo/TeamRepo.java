@@ -30,6 +30,8 @@ public class TeamRepo {
     }
   
     public Team createTeam(Team team) {
+        connector.getEntityManager().getTransaction().begin();
+
         connector.getEntityManager().persist(team);
         connector.getEntityManager().getTransaction().commit();
         return team;

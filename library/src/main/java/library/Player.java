@@ -1,5 +1,6 @@
 package library;
 
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -7,6 +8,7 @@ import javax.persistence.OneToOne;
 /**
  * Created by Jandie on 2017-05-24.
  */
+@Entity
 public class Player extends User {
 
     @OneToOne

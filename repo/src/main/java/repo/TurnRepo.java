@@ -15,6 +15,7 @@ public class TurnRepo {
     }
 
     public Turn createTurn(Turn turn) {
+        connector.getEntityManager().getTransaction().begin();
         connector.getEntityManager().persist(turn);
 
         connector.getEntityManager().getTransaction().commit();

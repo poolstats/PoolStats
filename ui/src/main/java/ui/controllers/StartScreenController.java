@@ -52,7 +52,7 @@ public class StartScreenController implements Initializable {
             a.showAndWait();
 
         } else {
-            application.getSessionData().addData(SessionData.CURRENT_USER, new UserLogic().loginUser(usernameField.getText()));
+            application.getSessionData().addData(SessionData.CURRENT_USER, new UserLogic().loginUser(usernameField.getText(), "password"));
 
             try {
                 application.loadMainScreen();

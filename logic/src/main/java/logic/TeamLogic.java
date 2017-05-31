@@ -3,7 +3,6 @@ package logic;
 import library.Player;
 import library.Team;
 import repo.TeamRepo;
-import repo.connector.JPAConnector;
 
 import javax.persistence.NoResultException;
 
@@ -18,14 +17,14 @@ public class TeamLogic {
     }
 
     public void deleteFromTeam(Team team, Player player) {
+
         team.getPlayers().remove(player);
         player.setTeam(null);
-        JPAConnector.getInstance().commitTransaction();
     }
 
     public Team getTeamByUser(Player player) {
 
-        try{
+        try {
             return teamRepo.getTeamByUser(player);
 
         } catch (NoResultException ex) {
@@ -36,13 +35,13 @@ public class TeamLogic {
     public Team addToTeam(String teamName, Player player) {
         Team team = null;
 
-        try{
-             team = teamRepo.getTeamByName(teamName);
+        try {
+            team = teamRepo.getTeamByName(teamName);
             team.addMember(player);
 
-            JPAConnector.getInstance().commitTransaction();
+            //JPAConnector.getInstance().commitTransaction();
 
-             return team;
+            return team;
 
         } catch (NoResultException ex) {
 
@@ -51,12 +50,12 @@ public class TeamLogic {
 
             team.addMember(player);
 
-            JPAConnector.getInstance().commitTransaction();
+            //JPAConnector.getInstance().commitTransaction();
 
             return team;
         }
     }
-      
+
     public Team createTeam(String teamName) {
         Team team = new Team(teamName);
 

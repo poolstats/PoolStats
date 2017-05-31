@@ -1,7 +1,7 @@
 package logic;
 
+import library.Jury;
 import library.Player;
-import library.UserStats;
 import repo.UserRepo;
 
 import java.util.List;
@@ -16,19 +16,18 @@ public class UserLogic {
         userRepo = new UserRepo();
     }
 
-    public Player loginUser(String username) {
-        Player player = userRepo.getUser(username);
+    public Jury loginUser(String username, String password) {
+        Jury jury = (Jury) userRepo.getUser(username);
 
-        if (player == null) {
-            UserStats userStats = new UserStats(0, 0, 0, 0, 0, 0, 0, 0);
-            player = new Player(username, userStats);
+        if (jury == null) {
+            jury = new Jury(username, password);
 
-            userRepo.addUser(player);
+            userRepo.addJury(jury);
 
-            return player;
+            return jury;
         }
 
-        return player;
+        return jury;
     }
 
     public List<Player> searchUser(String username) {

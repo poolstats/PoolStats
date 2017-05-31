@@ -1,6 +1,8 @@
 package repo;
 
+import library.Jury;
 import library.Player;
+import library.User;
 import repo.connector.JPAConnector;
 
 import javax.persistence.NoResultException;
@@ -19,8 +21,8 @@ public class UserRepo {
         this.connector = JPAConnector.getInstance();
     }
 
-    public Player getUser(String username) throws NoResultException {
-        return connector.getEntityManager().find(Player.class, username);
+    public User getUser(String username) throws NoResultException {
+        return connector.getEntityManager().find(User.class, username);
     }
 
     public List<Player> searchUser(String username) {
@@ -34,10 +36,11 @@ public class UserRepo {
         return (List<Player>) query.getResultList();
     }
 
-    public void addUser(Player player) {
-        connector.getEntityManager().persist(player.getUserStats());
-        connector.getEntityManager().persist(player);
+    public void addJury(Jury jury) {
+        connector.getEntityManager().getTransaction().begin();
 
-        JPAConnector.getInstance().commitTransaction();
+        connector.getEntityManager().persist(jury);
+
+        connector.getEntityManager().getTransaction().commit();
     }
 }

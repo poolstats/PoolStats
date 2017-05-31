@@ -14,6 +14,7 @@ public class TournamentRepo {
     }
 
     public Tournament createTournament(Tournament tournament) {
+        connector.getEntityManager().getTransaction().begin();
         connector.getEntityManager().persist(tournament);
 
         connector.getEntityManager().getTransaction().commit();

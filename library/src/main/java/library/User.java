@@ -9,7 +9,7 @@ import javax.persistence.InheritanceType;
  * Created by Jandie on 2017-05-03.
  */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class User {
     @Id
     private String username;
