@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for user complex type.
- * <p>
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- * <p>
+ * 
  * <pre>
  * &lt;complexType name="user">
  *   &lt;complexContent>
@@ -22,6 +22,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ *
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "user", propOrder = {
@@ -34,8 +36,10 @@ public abstract class User {
     /**
      * Gets the value of the username property.
      *
-     * @return possible object is
-     * {@link String }
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getUsername() {
         return username;
@@ -44,8 +48,10 @@ public abstract class User {
     /**
      * Sets the value of the username property.
      *
-     * @param value allowed object is
-     *              {@link String }
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setUsername(String value) {
         this.username = value;
