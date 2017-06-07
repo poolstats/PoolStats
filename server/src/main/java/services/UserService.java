@@ -1,6 +1,6 @@
 package services;
 
-import library.User;
+import library.Jury;
 import logic.UserLogic;
 
 import javax.jws.WebParam;
@@ -11,7 +11,7 @@ import javax.jws.WebService;
  */
 @WebService
 public class UserService {
-    public User loginUser(@WebParam(name = "username") String username,
+    public Jury loginUser(@WebParam(name = "username") String username,
                           @WebParam(name = "password") String password) {
         UserLogic userLogic = new UserLogic();
 

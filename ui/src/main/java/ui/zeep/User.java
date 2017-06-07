@@ -3,6 +3,7 @@ package ui.zeep;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -22,12 +23,15 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
+ * 
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "user", propOrder = {
         "username"
+})
+@XmlSeeAlso({
+        Jury.class
 })
 public abstract class User {
 
@@ -35,7 +39,7 @@ public abstract class User {
 
     /**
      * Gets the value of the username property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
@@ -47,7 +51,7 @@ public abstract class User {
 
     /**
      * Sets the value of the username property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }

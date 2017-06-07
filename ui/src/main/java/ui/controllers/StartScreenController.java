@@ -8,7 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import ui.Application;
 import ui.SessionData;
-import ui.zeep.User;
+import ui.zeep.Jury;
 import ui.zeep.UserService;
 import ui.zeep.UserServiceService;
 
@@ -57,7 +57,7 @@ public class StartScreenController implements Initializable {
             UserServiceService service = new UserServiceService();
             UserService port = service.getUserServicePort();
 
-            User user = port.loginUser(usernameField.getText(), "password");
+            Jury user = port.loginUser(usernameField.getText(), "password");
 
             application.getSessionData().addData(SessionData.CURRENT_USER, user);
 

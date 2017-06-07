@@ -16,7 +16,8 @@ public class UserLogic {
         userRepo = new UserRepo();
     }
 
-    public Jury loginUser(String username, String password) {
+    public Jury loginUser
+            (String username, String password) {
         Jury jury = (Jury) userRepo.getUser(username);
 
         if (jury == null) {

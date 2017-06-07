@@ -17,13 +17,13 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://services/}user" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://services/}jury" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
+ * 
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -33,29 +33,29 @@ import javax.xml.bind.annotation.XmlType;
 public class LoginUserResponse {
 
     @XmlElement(name = "return")
-    protected User _return;
+    protected Jury _return;
 
     /**
      * Gets the value of the return property.
-     *
+     * 
      * @return
      *     possible object is
-     *     {@link User }
+     *     {@link Jury }
      *     
      */
-    public User getReturn() {
+    public Jury getReturn() {
         return _return;
     }
 
     /**
      * Sets the value of the return property.
-     *
+     * 
      * @param value
      *     allowed object is
-     *     {@link User }
+     *     {@link Jury }
      *     
      */
-    public void setReturn(User value) {
+    public void setReturn(Jury value) {
         this._return = value;
     }
 

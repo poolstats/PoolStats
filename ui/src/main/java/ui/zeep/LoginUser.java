@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
+ * 
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -38,7 +38,7 @@ public class LoginUser {
 
     /**
      * Gets the value of the username property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
@@ -50,7 +50,7 @@ public class LoginUser {
 
     /**
      * Sets the value of the username property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
@@ -62,7 +62,7 @@ public class LoginUser {
 
     /**
      * Gets the value of the password property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
@@ -74,7 +74,7 @@ public class LoginUser {
 
     /**
      * Sets the value of the password property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }

@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import logic.TeamLogic;
 import ui.Application;
 
 import java.net.URL;
@@ -18,7 +17,6 @@ import java.util.ResourceBundle;
 public class MainScreenController implements Initializable {
 
     private Application application;
-    private TeamLogic teamLogic;
 
     @FXML
     private JFXButton logoutButton;
@@ -29,7 +27,6 @@ public class MainScreenController implements Initializable {
 
     public MainScreenController(Application application) {
         this.application = application;
-        this.teamLogic = new TeamLogic();
     }
 
     @Override

@@ -26,6 +26,7 @@ public class ObjectFactory {
 
     private final static QName _User_QNAME = new QName("http://services/", "user");
     private final static QName _LoginUser_QNAME = new QName("http://services/", "loginUser");
+    private final static QName _Jury_QNAME = new QName("http://services/", "jury");
     private final static QName _LoginUserResponse_QNAME = new QName("http://services/", "loginUserResponse");
 
     /**
@@ -44,6 +45,13 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Jury }
+     */
+    public Jury createJury() {
+        return new Jury();
+    }
+
+    /**
      * Create an instance of {@link LoginUserResponse }
      * 
      */
@@ -53,6 +61,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link User }{@code >}}
+     *
      */
     @XmlElementDecl(namespace = "http://services/", name = "user")
     public JAXBElement<User> createUser(User value) {
@@ -66,6 +75,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://services/", name = "loginUser")
     public JAXBElement<LoginUser> createLoginUser(LoginUser value) {
         return new JAXBElement<LoginUser>(_LoginUser_QNAME, LoginUser.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Jury }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://services/", name = "jury")
+    public JAXBElement<Jury> createJury(Jury value) {
+        return new JAXBElement<Jury>(_Jury_QNAME, Jury.class, null, value);
     }
 
     /**

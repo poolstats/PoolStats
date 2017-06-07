@@ -29,14 +29,14 @@ public interface UserService {
      * @param password
      * @param username
      * @return
-     *     returns ui.zeep.User
+     *     returns ui.zeep.Jury
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "loginUser", targetNamespace = "http://services/", className = "ui.zeep.LoginUser")
     @ResponseWrapper(localName = "loginUserResponse", targetNamespace = "http://services/", className = "ui.zeep.LoginUserResponse")
     @Action(input = "http://services/UserService/loginUserRequest", output = "http://services/UserService/loginUserResponse")
-    public User loginUser(
+    public Jury loginUser(
             @WebParam(name = "username", targetNamespace = "")
                     String username,
             @WebParam(name = "password", targetNamespace = "")
