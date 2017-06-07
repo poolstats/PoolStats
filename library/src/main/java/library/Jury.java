@@ -1,11 +1,13 @@
 package library;
 
 import javax.persistence.Entity;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Created by Jandie on 2017-05-24.
  */
 @Entity
+@XmlRootElement
 public class Jury extends User {
 
     private String password;

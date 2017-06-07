@@ -6,9 +6,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import logic.UserLogic;
 import ui.Application;
 import ui.SessionData;
+import ui.zeep.User;
+import ui.zeep.UserService;
+import ui.zeep.UserServiceService;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -52,7 +54,12 @@ public class StartScreenController implements Initializable {
             a.showAndWait();
 
         } else {
-            application.getSessionData().addData(SessionData.CURRENT_USER, new UserLogic().loginUser(usernameField.getText(), "password"));
+            UserServiceService service = new UserServiceService();
+            UserService port = service.getUserServicePort();
+
+            User user = port.loginUser(usernameField.getText(), "password");
+
+            application.getSessionData().addData(SessionData.CURRENT_USER, user);
 
             try {
                 application.loadMainScreen();
