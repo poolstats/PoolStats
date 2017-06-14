@@ -28,6 +28,9 @@ public class StartScreenController implements Initializable {
     @FXML
     public JFXButton startButton;
 
+    @FXML
+    public JFXTextField passwordField;
+
     private Application application;
 
     public StartScreenController(Application application) {
@@ -57,7 +60,7 @@ public class StartScreenController implements Initializable {
             UserServiceService service = new UserServiceService();
             UserService port = service.getUserServicePort();
 
-            Jury user = port.loginUser(usernameField.getText(), "password");
+            Jury user = port.loginUser(usernameField.getText(), passwordField.getText());
 
             application.getSessionData().addData(SessionData.CURRENT_USER, user);
 

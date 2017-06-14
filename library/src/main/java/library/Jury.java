@@ -29,3 +29,5 @@ public class Jury extends User {
         this.password = password;
     }
 }
+
+
