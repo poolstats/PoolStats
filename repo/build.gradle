@@ -2,4 +2,5 @@ dependencies {
     compile project (':library')
     compile project (':logic')
     compile group: 'org.eclipse.persistence', name: 'eclipselink', version: '2.5.0'
+    compile group: 'org.springframework.security', name: 'spring-security-crypto', version: '4.2.3.RELEASE'
 }

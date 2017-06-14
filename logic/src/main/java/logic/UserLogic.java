@@ -28,6 +28,10 @@ public class UserLogic {
             return jury;
         }
 
+        if (!jury.getPassword().equals(password)) {
+            return null;
+        }
+
         return jury;
     }
 

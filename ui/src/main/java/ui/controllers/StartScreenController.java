@@ -65,7 +65,9 @@ public class StartScreenController implements Initializable {
             application.getSessionData().addData(SessionData.CURRENT_USER, user);
 
             try {
-                application.loadMainScreen();
+                if (user != null) {
+                    application.loadMainScreen();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

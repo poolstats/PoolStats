@@ -12,6 +12,8 @@ public class Jury extends User {
 
     private String password;
 
+    private UserStats userStats;
+
     public Jury() {
         super();
     }
@@ -27,6 +29,14 @@ public class Jury extends User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public UserStats getUserStats() {
+        return userStats;
+    }
+
+    public void setUserStats(UserStats userStats) {
+        this.userStats = userStats;
     }
 }
 
