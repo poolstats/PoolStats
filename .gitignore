@@ -19,3 +19,4 @@ hs_err_pid*
 /logic/build/
 /repo/src/META-INF/persistence.xml
 /repo/src/main/resources/META-INF/persistence.xml
+/PoolStats.iml
