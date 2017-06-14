@@ -14,21 +14,21 @@ public class UserStats {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private int matchesPlayed;
-    private int matchesWon;
-    private int matchesLost;
-    private int tournamentsPlayed;
-    private int tournamentsWon;
-    private int tournamentsLost;
-    private int ballsPotted;
-    private int shots;
+    private String matchesPlayed;
+    private String matchesWon;
+    private String matchesLost;
+    private String tournamentsPlayed;
+    private String tournamentsWon;
+    private String tournamentsLost;
+    private String ballsPotted;
+    private String shots;
 
     public UserStats() {
         super();
     }
 
-    public UserStats(int matchesPlayed, int matchesWon, int matchesLost, int tournamentsPlayed,
-                     int tournamentsWon, int tournamentsLost, int ballsPotted, int shots) {
+    public UserStats(String matchesPlayed, String matchesWon, String matchesLost, String tournamentsPlayed,
+                     String tournamentsWon, String tournamentsLost, String ballsPotted, String shots) {
         this.matchesPlayed = matchesPlayed;
         this.matchesWon = matchesWon;
         this.matchesLost = matchesLost;
@@ -47,67 +47,67 @@ public class UserStats {
         this.id = id;
     }
 
-    public int getMatchesPlayed() {
+    public String getMatchesPlayed() {
         return matchesPlayed;
     }
 
-    public void setMatchesPlayed(int matchesPlayed) {
+    public void setMatchesPlayed(String matchesPlayed) {
         this.matchesPlayed = matchesPlayed;
     }
 
-    public int getMatchesWon() {
+    public String getMatchesWon() {
         return matchesWon;
     }
 
-    public void setMatchesWon(int matchesWon) {
+    public void setMatchesWon(String matchesWon) {
         this.matchesWon = matchesWon;
     }
 
-    public int getMatchesLost() {
+    public String getMatchesLost() {
         return matchesLost;
     }
 
-    public void setMatchesLost(int matchesLost) {
+    public void setMatchesLost(String matchesLost) {
         this.matchesLost = matchesLost;
     }
 
-    public int getTournamentsPlayed() {
+    public String getTournamentsPlayed() {
         return tournamentsPlayed;
     }
 
-    public void setTournamentsPlayed(int tournamentsPlayed) {
+    public void setTournamentsPlayed(String tournamentsPlayed) {
         this.tournamentsPlayed = tournamentsPlayed;
     }
 
-    public int getTournamentsWon() {
+    public String getTournamentsWon() {
         return tournamentsWon;
     }
 
-    public void setTournamentsWon(int tournamentsWon) {
+    public void setTournamentsWon(String tournamentsWon) {
         this.tournamentsWon = tournamentsWon;
     }
 
-    public int getTournamentsLost() {
+    public String getTournamentsLost() {
         return tournamentsLost;
     }
 
-    public void setTournamentsLost(int tournamentsLost) {
+    public void setTournamentsLost(String tournamentsLost) {
         this.tournamentsLost = tournamentsLost;
     }
 
-    public int getBallsPotted() {
+    public String getBallsPotted() {
         return ballsPotted;
     }
 
-    public void setBallsPotted(int ballsPotted) {
+    public void setBallsPotted(String ballsPotted) {
         this.ballsPotted = ballsPotted;
     }
 
-    public int getShots() {
+    public String getShots() {
         return shots;
     }
 
-    public void setShots(int shots) {
+    public void setShots(String shots) {
         this.shots = shots;
     }
 }
