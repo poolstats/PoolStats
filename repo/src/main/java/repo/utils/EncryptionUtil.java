@@ -1,6 +1,5 @@
 package repo.utils;
 
-
 import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.security.crypto.encrypt.TextEncryptor;
 
