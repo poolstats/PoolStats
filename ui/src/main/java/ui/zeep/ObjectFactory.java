@@ -46,6 +46,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Jury }
+     * 
      */
     public Jury createJury() {
         return new Jury();
@@ -57,6 +58,13 @@ public class ObjectFactory {
      */
     public LoginUserResponse createLoginUserResponse() {
         return new LoginUserResponse();
+    }
+
+    /**
+     * Create an instance of {@link UserStats }
+     */
+    public UserStats createUserStats() {
+        return new UserStats();
     }
 
     /**

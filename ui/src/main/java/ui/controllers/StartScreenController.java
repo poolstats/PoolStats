@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import repo.utils.EncryptionUtil;
 import ui.Application;
 import ui.SessionData;
 import ui.zeep.Jury;
@@ -62,10 +63,23 @@ public class StartScreenController implements Initializable {
 
             Jury user = port.loginUser(usernameField.getText(), passwordField.getText());
 
+            if (user != null) {
+                user.getUserStats().setBallsPotted(EncryptionUtil.decrypt(passwordField.getText(), user.getUserStats().getBallsPotted()));
+                user.getUserStats().setMatchesPlayed(EncryptionUtil.decrypt(passwordField.getText(), user.getUserStats().getMatchesPlayed()));
+                user.getUserStats().setMatchesWon(EncryptionUtil.decrypt(passwordField.getText(), user.getUserStats().getMatchesWon()));
+                user.getUserStats().setMatchesLost(EncryptionUtil.decrypt(passwordField.getText(), user.getUserStats().getMatchesLost()));
+                user.getUserStats().setTournamentsPlayed(EncryptionUtil.decrypt(passwordField.getText(), user.getUserStats().getTournamentsPlayed()));
+                user.getUserStats().setTournamentsWon(EncryptionUtil.decrypt(passwordField.getText(), user.getUserStats().getTournamentsWon()));
+                user.getUserStats().setTournamentsLost(EncryptionUtil.decrypt(passwordField.getText(), user.getUserStats().getTournamentsLost()));
+                user.getUserStats().setShots(EncryptionUtil.decrypt(passwordField.getText(), user.getUserStats().getShots()));
+            }
+
             application.getSessionData().addData(SessionData.CURRENT_USER, user);
 
             try {
-                application.loadMainScreen();
+                if (user != null) {
+                    application.loadMainScreen();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

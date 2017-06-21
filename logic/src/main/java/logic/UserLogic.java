@@ -2,6 +2,7 @@ package logic;
 
 import library.Jury;
 import library.Player;
+import library.UserStats;
 import repo.UserRepo;
 
 import java.util.List;
@@ -22,9 +23,16 @@ public class UserLogic {
         if (jury == null) {
             jury = new Jury(username, password);
 
+            UserStats userStats = new UserStats("1", "2", "3", "4", "5", "6", "7", "8");
+            jury.setUserStats(userStats);
+
             userRepo.addJury(jury);
 
             return jury;
+        }
+
+        if (!jury.getPassword().equals(password)) {
+            return null;
         }
 
         return jury;

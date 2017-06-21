@@ -1,6 +1,8 @@
 package library;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -11,6 +13,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Jury extends User {
 
     private String password;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private UserStats userStats;
 
     public Jury() {
         super();
@@ -27,6 +32,14 @@ public class Jury extends User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public UserStats getUserStats() {
+        return userStats;
+    }
+
+    public void setUserStats(UserStats userStats) {
+        this.userStats = userStats;
     }
 }
 
