@@ -17,13 +17,13 @@ public class TeamRepo {
     }
 
     public Team getTeamByName(String teamName) {
-        Query query = (Query) connector.getEntityManager().createQuery("SELECT t FROM Team t WHERE t.name = :teamname ");
+        Query query = connector.getEntityManager().createQuery("SELECT t FROM Team t WHERE t.name = :teamname ");
         query.setParameter("teamname", teamName);
         return (Team) query.getSingleResult();
     }
 
     public Team getTeamByUser(Player player) {
-        Query query = (Query) connector.getEntityManager().createQuery("SELECT u FROM User u WHERE u.username = :username");
+        Query query = connector.getEntityManager().createQuery("SELECT u FROM User u WHERE u.username = :username");
         query.setParameter("username", player.getUsername());
         Player p = (Player) query.getSingleResult();
         return p.getTeam();

@@ -21,6 +21,12 @@ public class UserRepo {
         this.connector = JPAConnector.getInstance();
     }
 
+    public List<Player> getAllUsers() {
+        Query q = connector.getEntityManager().createQuery(
+                "SELECT u FROM User u");
+        return (List<Player>) q.getResultList();
+    }
+
     public User getUser(String username) throws NoResultException {
         return connector.getEntityManager().find(User.class, username);
     }
@@ -38,9 +44,7 @@ public class UserRepo {
 
     public void addJury(Jury jury) {
         connector.getEntityManager().getTransaction().begin();
-
         connector.getEntityManager().persist(jury);
-
         connector.getEntityManager().getTransaction().commit();
     }
 }
